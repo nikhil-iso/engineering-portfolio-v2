@@ -2,15 +2,14 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail, ChevronDown, Rocket, User } from "lucide-react";
 import TypewriterEffect from "@/components/TypewriterEffect";
+import BlackHoleBackground from "@/components/BlackHoleBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background star-field">
+    <div className="min-h-screen bg-background">
       {/* Hero */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-6 relative">
-        {/* Ambient glow */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
-        <div className="absolute top-1/2 left-1/3 w-[400px] h-[400px] rounded-full bg-secondary/5 blur-[100px] pointer-events-none" />
+      <section className="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
+        <BlackHoleBackground />
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
