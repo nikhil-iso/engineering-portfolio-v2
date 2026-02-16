@@ -2,14 +2,21 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail, ChevronDown, Rocket, User } from "lucide-react";
 import TypewriterEffect from "@/components/TypewriterEffect";
-import BlackHoleBackground from "@/components/BlackHoleBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background star-field">
       {/* Hero */}
       <section className="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
-        <BlackHoleBackground />
+        {/* Nebula glow layers */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full opacity-30"
+            style={{ background: "radial-gradient(circle, hsl(260 80% 40% / 0.6) 0%, hsl(220 80% 30% / 0.3) 40%, transparent 70%)" }} />
+          <div className="absolute top-[40%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-25 blur-[40px]"
+            style={{ background: "radial-gradient(circle, hsl(220 80% 55% / 0.5) 0%, hsl(260 60% 40% / 0.2) 50%, transparent 70%)" }} />
+          <div className="absolute top-[55%] left-[55%] -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full opacity-20 blur-[60px]"
+            style={{ background: "radial-gradient(circle, hsl(280 70% 50% / 0.4) 0%, transparent 60%)" }} />
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
