@@ -1,5 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const navItems = [
   { path: "/", label: "Home" },
@@ -36,6 +38,11 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
+          <a href="/resume.pdf" download>
+            <Button variant="outline" size="sm" className="gap-2">
+              <Download className="w-4 h-4" /> Resume
+            </Button>
+          </a>
         </div>
       </div>
     </motion.nav>
