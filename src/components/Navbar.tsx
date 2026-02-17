@@ -38,7 +38,7 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
-          <a href="/resume.pdf" download>
+          <a href="/website_resume.pdf" download>
             <Button variant="outline" size="sm" className="gap-2">
               <Download className="w-4 h-4" /> Resume
             </Button>

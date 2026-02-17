@@ -7,8 +7,8 @@ const Footer = () => {
         <p className="text-sm font-semibold text-foreground">Get In Touch</p>
         <div className="flex items-center gap-3">
           <Mail className="w-4 h-4 text-primary" />
-          <a href="mailto:nikhil@example.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-            nikhil@example.com
+          <a href="mailto:nikhil.patel@usask.ca" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            nikhil.patel@usask.ca
           </a>
         </div>
         <div className="flex items-center gap-3">

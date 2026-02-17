@@ -58,7 +58,7 @@ const Index = () => {
           {/* Social buttons */}
           <div className="flex items-center justify-center gap-4 mt-10">
             <a
-              href="https://github.com"
+              href="https://github.com/nikhil-iso"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-5 py-2.5 rounded-lg glow-border bg-card/60 text-foreground hover:text-primary hover:border-primary/50 transition-all duration-300 text-sm font-medium"
@@ -66,7 +66,7 @@ const Index = () => {
               <Github className="w-4 h-4" /> GitHub
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/nikhil-patel-ba1581281/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-5 py-2.5 rounded-lg glow-border bg-card/60 text-foreground hover:text-secondary hover:border-secondary/50 transition-all duration-300 text-sm font-medium"
@@ -74,7 +74,7 @@ const Index = () => {
               <Linkedin className="w-4 h-4" /> LinkedIn
             </a>
             <a
-              href="mailto:nikhil@example.com"
+              href="mailto:nikhil.patel@usask.ca"
               className="flex items-center gap-2 px-5 py-2.5 rounded-lg glow-border bg-card/60 text-foreground hover:text-accent hover:border-accent/50 transition-all duration-300 text-sm font-medium"
             >
               <Mail className="w-4 h-4" /> Email
@@ -168,16 +168,16 @@ const Index = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" name="firstName" placeholder="John" required maxLength={100} />
+                  <Input id="firstName" name="firstName" placeholder="Peter" required maxLength={100} />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" name="lastName" placeholder="Doe" required maxLength={100} />
+                  <Input id="lastName" name="lastName" placeholder="Parker" required maxLength={100} />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" placeholder="john@example.com" required maxLength={255} />
+                <Input id="email" name="email" type="email" placeholder="notspiderman@oscorp.com" required maxLength={255} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="subject">Subject</Label>

@@ -113,6 +113,10 @@
     animation: marquee 30s linear infinite;
   }
 
+  .marquee-row:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+
   /* Typewriter cursor */
   @keyframes blink {
     0%, 50% { border-color: hsl(260 80% 60%); }
