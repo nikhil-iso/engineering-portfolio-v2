@@ -1,25 +1,40 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 const timelineItems = [
   {
     year: "2021",
     title: "Started at USask",
     description: "Began Electrical Engineering studies at the University of Saskatchewan.",
+    projects: [
+      { label: "Custom PCB Design", path: "/personal-projects/custom-pcb" },
+    ],
   },
   {
     year: "2022",
     title: "Joined USST",
     description: "Became a member of the University of Saskatchewan Space Team.",
+    projects: [
+      { label: "CanSat Competition Entry", path: "/team-projects/cansat" },
+    ],
   },
   {
     year: "2023",
     title: "Propulsion Lead",
     description: "Took on the role of Propulsion Lead for USST Rocketry division.",
+    projects: [
+      { label: "USST Hybrid Rocket Engine", path: "/team-projects/usst-rocket" },
+    ],
   },
   {
     year: "2024",
     title: "President of USST",
     description: "Elected President of the University of Saskatchewan Space Team.",
+    projects: [
+      { label: "Solar-Powered Vehicle", path: "/team-projects/solar-car" },
+      { label: "Home Automation System", path: "/personal-projects/home-automation" },
+    ],
   },
 ];
 
@@ -48,6 +63,20 @@ const Timeline = () => {
                   <span className="text-sm font-mono text-primary">{item.year}</span>
                   <h3 className="text-lg font-semibold text-foreground mt-1">{item.title}</h3>
                   <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                  {item.projects && item.projects.length > 0 && (
+                    <div className="mt-3 space-y-1">
+                      {item.projects.map((project) => (
+                        <Link
+                          key={project.path}
+                          to={project.path}
+                          className="flex items-center gap-1.5 text-xs text-primary hover:text-primary/80 transition-colors group"
+                        >
+                          <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                          {project.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
               {/* Center dot */}

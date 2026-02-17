@@ -1,9 +1,22 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail, ChevronDown, Rocket, User } from "lucide-react";
+import { Github, Linkedin, Mail, ChevronDown, Rocket, User, MapPin, Send } from "lucide-react";
 import TypewriterEffect from "@/components/TypewriterEffect";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const { toast } = useToast();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    toast({ title: "Message sent!", description: "Thanks for reaching out. I'll get back to you soon." });
+    (e.target as HTMLFormElement).reset();
+  };
+
   return (
     <div className="min-h-screen bg-background star-field">
       {/* Hero */}
@@ -119,6 +132,83 @@ const Index = () => {
                 </p>
               </motion.div>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Let's Connect */}
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold gradient-text text-center mb-12"
+          >
+            Let's Connect
+          </motion.h2>
+
+          <div className="grid md:grid-cols-5 gap-8">
+            {/* Contact Form */}
+            <motion.form
+              onSubmit={handleSubmit}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="md:col-span-3 glow-border rounded-xl p-8 bg-card/50 backdrop-blur-sm space-y-5"
+            >
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="firstName">First Name</Label>
+                  <Input id="firstName" name="firstName" placeholder="John" required maxLength={100} />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="lastName">Last Name</Label>
+                  <Input id="lastName" name="lastName" placeholder="Doe" required maxLength={100} />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" name="email" type="email" placeholder="john@example.com" required maxLength={255} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="subject">Subject</Label>
+                <Input id="subject" name="subject" placeholder="What's this about?" required maxLength={200} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="message">Message</Label>
+                <Textarea id="message" name="message" placeholder="Your message..." required maxLength={1000} rows={4} />
+              </div>
+              <Button type="submit" className="w-full gap-2">
+                <Send className="w-4 h-4" /> Send Message
+              </Button>
+            </motion.form>
+
+            {/* Get In Touch */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="md:col-span-2 glow-border rounded-xl p-8 bg-card/50 backdrop-blur-sm flex flex-col justify-center space-y-8"
+            >
+              <h3 className="text-xl font-semibold text-foreground">Get In Touch</h3>
+              <div className="flex items-start gap-4">
+                <Mail className="w-5 h-5 text-primary mt-0.5" />
+                <div>
+                  <p className="text-sm font-medium text-foreground">Email</p>
+                  <a href="mailto:nikhil@example.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    nikhil@example.com
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <MapPin className="w-5 h-5 text-secondary mt-0.5" />
+                <div>
+                  <p className="text-sm font-medium text-foreground">Location</p>
+                  <p className="text-sm text-muted-foreground">Saskatoon, SK, Canada</p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
