@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail, ChevronDown, Rocket, User, MapPin, Send } from "lucide-react";
+import { Github, Linkedin, Mail, ChevronDown, Rocket, User, Send } from "lucide-react";
 import TypewriterEffect from "@/components/TypewriterEffect";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -148,14 +148,14 @@ const Index = () => {
             Let's Connect
           </motion.h2>
 
-          <div className="grid md:grid-cols-5 gap-8">
+          <div className="max-w-3xl mx-auto">
             {/* Contact Form */}
             <motion.form
               onSubmit={handleSubmit}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="md:col-span-3 glow-border rounded-xl p-8 bg-card/50 backdrop-blur-sm space-y-5"
+              className="glow-border rounded-xl p-8 bg-card/50 backdrop-blur-sm space-y-5"
             >
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -183,32 +183,6 @@ const Index = () => {
                 <Send className="w-4 h-4" /> Send Message
               </Button>
             </motion.form>
-
-            {/* Get In Touch */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="md:col-span-2 glow-border rounded-xl p-8 bg-card/50 backdrop-blur-sm flex flex-col justify-center space-y-8"
-            >
-              <h3 className="text-xl font-semibold text-foreground">Get In Touch</h3>
-              <div className="flex items-start gap-4">
-                <Mail className="w-5 h-5 text-primary mt-0.5" />
-                <div>
-                  <p className="text-sm font-medium text-foreground">Email</p>
-                  <a href="mailto:nikhil@example.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    nikhil@example.com
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <MapPin className="w-5 h-5 text-secondary mt-0.5" />
-                <div>
-                  <p className="text-sm font-medium text-foreground">Location</p>
-                  <p className="text-sm text-muted-foreground">Saskatoon, SK, Canada</p>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
