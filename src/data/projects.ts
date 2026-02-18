@@ -4,6 +4,7 @@ export interface PersonalProject {
   skills: string[];
   learnings: string[];
   description: string;
+  span?: 1 | 2 | 3; // column span in the 3-col grid
 }
 
 export interface TeamProject {
@@ -14,6 +15,7 @@ export interface TeamProject {
   technologies: string[];
   role: string;
   description: string;
+  span?: 1 | 2 | 3; // column span in the 3-col grid
 }
 
 export const personalProjects: PersonalProject[] = [
@@ -27,6 +29,7 @@ export const personalProjects: PersonalProject[] = [
     ],
     description:
       "Designed and fabricated a custom PCB for sensor data acquisition. The board features an STM32 microcontroller with integrated power regulation and communication interfaces.",
+    span: 1,
   },
   {
     id: "home-automation",
@@ -38,6 +41,7 @@ export const personalProjects: PersonalProject[] = [
     ],
     description:
       "Built a home automation system using Arduino-based controllers to manage lighting, temperature, and security sensors with a custom mobile dashboard.",
+    span: 2,
   },
   {
     id: "robot-arm",
@@ -49,6 +53,7 @@ export const personalProjects: PersonalProject[] = [
     ],
     description:
       "Designed and built a 3-degree-of-freedom robotic arm with Python-based control software for pick-and-place operations.",
+    span: 1,
   },
 ];
 
@@ -60,6 +65,7 @@ export const teamProjects: TeamProject[] = [
     teamSize: 12,
     technologies: ["SolidWorks", "MATLAB", "Sensor Integration"],
     role: "Propulsion Lead — oversaw engine design, testing, and safety protocols",
+    span: 3,
     description:
       "Led the propulsion sub-team in designing a hybrid rocket engine using nitrous oxide and HTPB. Conducted multiple static fire tests and iterated on injector and combustion chamber design.",
   },
@@ -70,6 +76,7 @@ export const teamProjects: TeamProject[] = [
     teamSize: 8,
     technologies: ["Arduino", "C++", "PCB Design", "Telemetry"],
     role: "Electrical Lead — designed the avionics and telemetry systems",
+    span: 2,
     description:
       "Developed the avionics stack for a CanSat competition entry, including sensor integration, real-time telemetry downlink, and GPS tracking with a custom PCB.",
   },
@@ -80,6 +87,7 @@ export const teamProjects: TeamProject[] = [
     teamSize: 20,
     technologies: ["AutoCAD", "Power Electronics", "Battery Management"],
     role: "Electrical Systems Engineer — designed the power distribution network",
+    span: 1,
     description:
       "Contributed to the electrical systems of a solar-powered vehicle, focusing on maximum power point tracking (MPPT) and battery management system design.",
   },
