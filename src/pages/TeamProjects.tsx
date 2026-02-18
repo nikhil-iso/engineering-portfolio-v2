@@ -15,13 +15,20 @@ const TeamProjects = () => {
           <p className="text-muted-foreground">Collaborative engineering work</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {teamProjects.map((project, i) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
+              className={
+                project.span === 3
+                  ? "col-span-1 md:col-span-2 lg:col-span-3"
+                  : project.span === 2
+                  ? "col-span-1 md:col-span-2"
+                  : "col-span-1"
+              }
             >
               <ProjectCard
                 id={project.id}
@@ -29,6 +36,7 @@ const TeamProjects = () => {
                 subtitle={project.objective}
                 tags={project.technologies}
                 type="team"
+                span={project.span}
               />
             </motion.div>
           ))}
