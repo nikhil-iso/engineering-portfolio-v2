@@ -21,7 +21,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background star-field">
       {/* Hero */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
+      <section className="min-h-screen flex flex-col items-center justify-center px-8 md:px-16 relative overflow-hidden">
         {/* ColorBends background */}
         <div className="absolute inset-0 pointer-events-none">
           <ColorBends
@@ -43,43 +43,69 @@ const Index = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center z-10"
+          className="z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16 max-w-5xl w-full"
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-4">
-            <span className="text-foreground">Nikhil Patel</span>
-          </h1>
-          <p className="text-2xl md:text-3xl font-light text-muted-foreground mb-2">
-            Engineering Student <span className="gradient-text">&</span> Designer
-          </p>
-          <div className="h-8 mt-4">
-            <TypewriterEffect />
+          {/* Text content */}
+          <div className="flex-1 text-left">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-3 leading-tight">
+              <span
+                className="text-foreground"
+                style={{ textShadow: "0 2px 24px hsl(260 80% 60% / 0.25), 0 1px 0 hsl(220 20% 90% / 0.8)" }}
+              >
+                Nikhil Patel
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl font-semibold mb-3 gradient-text">
+              Engineering Student &amp; Designer
+            </p>
+            <div className="h-8 mb-8">
+              <TypewriterEffect />
+            </div>
+
+            {/* Social buttons */}
+            <div className="flex items-center gap-4 flex-wrap">
+              <a
+                href="https://github.com/nikhil-iso"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg glow-border bg-card/80 backdrop-blur-sm text-foreground hover:text-primary hover:border-primary/60 transition-all duration-300 text-sm font-semibold"
+              >
+                <Github className="w-4 h-4" /> GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/nikhil-patel-ba1581281/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg glow-border bg-card/80 backdrop-blur-sm text-foreground hover:text-secondary hover:border-secondary/60 transition-all duration-300 text-sm font-semibold"
+              >
+                <Linkedin className="w-4 h-4" /> LinkedIn
+              </a>
+              <a
+                href="mailto:nikhil.patel@usask.ca"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg glow-border bg-card/80 backdrop-blur-sm text-foreground hover:text-accent hover:border-accent/60 transition-all duration-300 text-sm font-semibold"
+              >
+                <Mail className="w-4 h-4" /> Email
+              </a>
+            </div>
           </div>
 
-          {/* Social buttons */}
-          <div className="flex items-center justify-center gap-4 mt-10">
-            <a
-              href="https://github.com/nikhil-iso"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-lg glow-border bg-card/60 text-foreground hover:text-primary hover:border-primary/50 transition-all duration-300 text-sm font-medium"
+          {/* Profile photo placeholder */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2 }}
+            className="shrink-0"
+          >
+            <div
+              className="w-52 h-52 md:w-64 md:h-64 rounded-full glow-border bg-card/60 backdrop-blur-sm flex flex-col items-center justify-center relative overflow-hidden"
+              style={{ boxShadow: "0 0 40px hsl(260 80% 60% / 0.3), 0 0 80px hsl(220 80% 55% / 0.15)" }}
             >
-              <Github className="w-4 h-4" /> GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/nikhil-patel-ba1581281/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-lg glow-border bg-card/60 text-foreground hover:text-secondary hover:border-secondary/50 transition-all duration-300 text-sm font-medium"
-            >
-              <Linkedin className="w-4 h-4" /> LinkedIn
-            </a>
-            <a
-              href="mailto:nikhil.patel@usask.ca"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-lg glow-border bg-card/60 text-foreground hover:text-accent hover:border-accent/50 transition-all duration-300 text-sm font-medium"
-            >
-              <Mail className="w-4 h-4" /> Email
-            </a>
-          </div>
+              {/* Gradient background inside circle */}
+              <div className="absolute inset-0 rounded-full" style={{ background: "radial-gradient(circle at 60% 35%, hsl(260 80% 60% / 0.18), hsl(220 80% 55% / 0.1) 60%, transparent)" }} />
+              <User className="w-20 h-20 text-primary/60 relative z-10" />
+              <span className="text-xs text-muted-foreground mt-2 relative z-10 font-medium">Your photo here</span>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Scroll indicator */}
