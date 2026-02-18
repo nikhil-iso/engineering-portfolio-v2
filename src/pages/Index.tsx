@@ -25,17 +25,17 @@ const Index = () => {
         {/* ColorBends background */}
         <div className="absolute inset-0 pointer-events-none">
           <ColorBends
-            rotation={90}
+            rotation={270}
             speed={0.2}
             colors={["#5227FF", "#7e47eb", "#306ee8", "#7e47eb"]}
             transparent
             autoRotate={0}
-            scale={0.8}
+            scale={1.2}
             frequency={1}
             warpStrength={1}
             mouseInfluence={0.3}
             parallax={0.5}
-            noise={0}
+            noise={0.05}
           />
         </div>
 
