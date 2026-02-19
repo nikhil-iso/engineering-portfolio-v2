@@ -21,7 +21,7 @@ const TeamProjects = () => {
               key={project.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.05 }}
               className={
                 project.span === 3
                   ? "col-span-1 md:col-span-2 lg:col-span-3"
