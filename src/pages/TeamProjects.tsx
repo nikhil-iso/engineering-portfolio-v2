@@ -37,6 +37,10 @@ const TeamProjects = () => {
                 tags={project.technologies}
                 type="team"
                 span={project.span}
+                myTitle={project.myTitle}
+                teamSize={project.teamSize}
+                peopleManaged={project.peopleManaged}
+                role={project.role}
               />
             </motion.div>
           ))}
