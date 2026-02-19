@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import Timeline from "@/components/Timeline";
-import SkillsMarquee from "@/components/SkillsMarquee";
+import { lazy, Suspense } from "react";
+
+const Timeline = lazy(() => import("@/components/Timeline"));
+const SkillsMarquee = lazy(() => import("@/components/SkillsMarquee"));
 
 const About = () => {
   return (
@@ -18,8 +20,10 @@ const About = () => {
         </p>
       </motion.div>
 
-      <Timeline />
-      <SkillsMarquee />
+      <Suspense fallback={null}>
+        <Timeline />
+        <SkillsMarquee />
+      </Suspense>
     </div>
   );
 };

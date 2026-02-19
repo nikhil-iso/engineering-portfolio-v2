@@ -111,7 +111,7 @@ void main() {
 }
 `;
 
-export default function ColorBends({
+const ColorBends = React.memo(React.forwardRef<HTMLDivElement, ColorBendsProps>(function ColorBends({
   className,
   style,
   rotation = 45,
@@ -125,7 +125,7 @@ export default function ColorBends({
   mouseInfluence = 1,
   parallax = 0.5,
   noise = 0.1
-}: ColorBendsProps) {
+}: ColorBendsProps, _ref) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const rafRef = useRef<number | null>(null);
@@ -305,4 +305,6 @@ export default function ColorBends({
   }, []);
 
   return <div ref={containerRef} className={`w-full h-full relative overflow-hidden ${className}`} style={style} />;
-}
+}));
+
+export default ColorBends;

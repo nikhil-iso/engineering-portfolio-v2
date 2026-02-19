@@ -1,3 +1,5 @@
+import { useMemo, memo } from "react";
+
 const skillCategories = [
   {
     title: "Engineering Tools",
@@ -38,8 +40,17 @@ const skillCategories = [
   },
 ];
 
-const SkillsMarquee = () => {
-  const minItemsPerRow = 12;
+const MIN_ITEMS = 12;
+
+const SkillsMarquee = memo(function SkillsMarquee() {
+  const rows = useMemo(() =>
+    skillCategories.map((category) => {
+      const repeatCount = Math.max(1, Math.ceil(MIN_ITEMS / category.skills.length));
+      const repeated = Array.from({ length: repeatCount }, () => category.skills).flat();
+      const looped = [...repeated, ...repeated];
+      return { ...category, looped };
+    }),
+  []);
 
   return (
     <section className="py-16">
@@ -48,39 +59,35 @@ const SkillsMarquee = () => {
         <p className="text-muted-foreground text-center">Tools, languages, and platforms I work with</p>
       </div>
 
-      {skillCategories.map((category) => {
-        const repeatCount = Math.max(1, Math.ceil(minItemsPerRow / category.skills.length));
-        const repeated = Array.from({ length: repeatCount }, () => category.skills).flat();
-        const looped = [...repeated, ...repeated];
-
-        return (
-          <div key={category.title} className="mb-10">
-            <h3 className="text-lg font-semibold text-foreground/80 text-center mb-4">{category.title}</h3>
-            <div className="marquee-row overflow-hidden relative mx-auto w-full md:w-[75%]">
-              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
-              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
-              <div className="flex w-max animate-marquee">
-                {looped.map((skill, i) => (
-                  <div
-                    key={i}
-                    className="flex-shrink-0 mx-4 flex flex-col items-center gap-3 p-6 rounded-xl glow-border bg-card/50 min-w-[140px]"
-                  >
-                    <img
-                      src={skill.img}
-                      alt={skill.name}
-                      className="w-12 h-12 object-contain"
-                      loading="lazy"
-                    />
-                    <span className="text-base text-foreground font-medium whitespace-nowrap">{skill.name}</span>
-                  </div>
-                ))}
-              </div>
+      {rows.map((category) => (
+        <div key={category.title} className="mb-10">
+          <h3 className="text-lg font-semibold text-foreground/80 text-center mb-4">{category.title}</h3>
+          <div className="marquee-row overflow-hidden relative mx-auto w-full md:w-[75%]">
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+            <div className="flex w-max animate-marquee">
+              {category.looped.map((skill, i) => (
+                <div
+                  key={i}
+                  className="flex-shrink-0 mx-4 flex flex-col items-center gap-3 p-6 rounded-xl glow-border bg-card/50 min-w-[140px]"
+                >
+                  <img
+                    src={skill.img}
+                    alt={skill.name}
+                    className="w-12 h-12 object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span className="text-base text-foreground font-medium whitespace-nowrap">{skill.name}</span>
+                </div>
+              ))}
             </div>
           </div>
-        );
-      })}
+        </div>
+      ))}
     </section>
   );
-};
+});
 
 export default SkillsMarquee;
+

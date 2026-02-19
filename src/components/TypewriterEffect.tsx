@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 
 const titles = [
   "President of USST",
@@ -6,7 +6,7 @@ const titles = [
   "USask Electrical Engineering",
 ];
 
-const TypewriterEffect = () => {
+const TypewriterEffect = memo(function TypewriterEffect() {
   const [currentTitle, setCurrentTitle] = useState(0);
   const [currentChar, setCurrentChar] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -16,8 +16,8 @@ const TypewriterEffect = () => {
     const timeout = isDeleting ? 40 : 80;
 
     if (!isDeleting && currentChar === title.length) {
-      setTimeout(() => setIsDeleting(true), 2000);
-      return;
+      const t = setTimeout(() => setIsDeleting(true), 2000);
+      return () => clearTimeout(t);
     }
 
     if (isDeleting && currentChar === 0) {
@@ -39,6 +39,7 @@ const TypewriterEffect = () => {
       <span className="typewriter-cursor">&nbsp;</span>
     </span>
   );
-};
+});
 
 export default TypewriterEffect;
+
