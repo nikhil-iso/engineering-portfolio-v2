@@ -12,6 +12,8 @@ export interface TeamProject {
   title: string;
   objective: string;
   teamSize: number;
+  peopleManaged?: number;
+  myTitle: string;
   technologies: string[];
   role: string;
   description: string;
@@ -63,8 +65,10 @@ export const teamProjects: TeamProject[] = [
     title: "USST Hybrid Rocket Engine",
     objective: "Design and test a student-built hybrid rocket propulsion system",
     teamSize: 12,
+    myTitle: "Propulsion Lead",
+    peopleManaged: 6,
     technologies: ["SolidWorks", "MATLAB", "Sensor Integration"],
-    role: "Propulsion Lead — oversaw engine design, testing, and safety protocols",
+    role: "Oversaw engine design, testing, and safety protocols",
     span: 3,
     description:
       "Led the propulsion sub-team in designing a hybrid rocket engine using nitrous oxide and HTPB. Conducted multiple static fire tests and iterated on injector and combustion chamber design.",
@@ -74,8 +78,10 @@ export const teamProjects: TeamProject[] = [
     title: "CanSat Competition Entry",
     objective: "Build a satellite in a can that collects atmospheric data during descent",
     teamSize: 8,
+    myTitle: "Electrical Lead",
+    peopleManaged: 3,
     technologies: ["Arduino", "C++", "PCB Design", "Telemetry"],
-    role: "Electrical Lead — designed the avionics and telemetry systems",
+    role: "Designed the avionics and telemetry systems",
     span: 2,
     description:
       "Developed the avionics stack for a CanSat competition entry, including sensor integration, real-time telemetry downlink, and GPS tracking with a custom PCB.",
@@ -85,8 +91,9 @@ export const teamProjects: TeamProject[] = [
     title: "Solar-Powered Vehicle",
     objective: "Design an energy-efficient solar-powered vehicle for competition",
     teamSize: 20,
+    myTitle: "Electrical Systems Engineer",
     technologies: ["AutoCAD", "Power Electronics", "Battery Management"],
-    role: "Electrical Systems Engineer — designed the power distribution network",
+    role: "Designed the power distribution network",
     span: 1,
     description:
       "Contributed to the electrical systems of a solar-powered vehicle, focusing on maximum power point tracking (MPPT) and battery management system design.",
