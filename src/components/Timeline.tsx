@@ -12,28 +12,36 @@ const timelineItems = [
     ],
   },
   {
-    year: "2022",
-    title: "Joined USST",
-    description: "Became a member of the University of Saskatchewan Space Team.",
+    year: "2023",
+    title: "FRC Drivetrain Lead",
+    description: "Led drivetrain development and optimization for FRC Team 4627.",
     projects: [
-      { label: "CanSat Competition Entry", path: "/team-projects/cansat" },
+      { label: "FRC 4627 Manning Robotics - Drivetrain Development", path: "/team-projects/frc-4627-manning" },
     ],
   },
   {
     year: "2023",
-    title: "Propulsion Lead",
-    description: "Took on the role of Propulsion Lead for USST Rocketry division.",
+    title: "Provincial Podium",
+    description: "Competed at Skills Alberta with a coordinated multi-robot system.",
     projects: [
-      { label: "USST Hybrid Rocket Engine", path: "/team-projects/usst-rocket" },
+      { label: "Skills Alberta Robotics Competition 2023", path: "/team-projects/skills-alberta-2023" },
     ],
   },
   {
     year: "2024",
-    title: "President of USST",
-    description: "Elected President of the University of Saskatchewan Space Team.",
+    title: "NASA Space Apps",
+    description: "Built ExoSpace to visualize open NASA datasets in a 48-hour hackathon.",
     projects: [
-      { label: "Solar-Powered Vehicle", path: "/team-projects/solar-car" },
+      { label: "NASA Space Apps Challenge 2024 - ExoSpace", path: "/team-projects/nasa-space-apps-2024" },
       { label: "Home Automation System", path: "/personal-projects/home-automation" },
+    ],
+  },
+  {
+    year: "2025",
+    title: "Launch Canada",
+    description: "Led propulsion integration for an M-class high-power rocket campaign.",
+    projects: [
+      { label: "Project \"UP\" - USST Rocketry", path: "/team-projects/usst-rocketry" },
     ],
   },
 ];

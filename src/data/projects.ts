@@ -25,7 +25,7 @@ export interface PersonalProject {
 
 // ── Team Project shape ───────────────────────────────────────
 export interface TeamProject {
-  id: string;            // URL slug, must be unique (e.g. "usst-rocket")
+  id: string;            // URL slug, must be unique (e.g. "usst-rocketry")
   title: string;         // Display name shown on card & detail page
   description: string;   // Short summary shown on the card
   objective: string;     // One-liner objective
@@ -42,6 +42,12 @@ export interface TeamProject {
   roleAndProcess: string;        // Your specific role and the process you followed
   toolsUsed: string[];           // Tools, software, languages used
   outcome: string;               // Quantifiable results or key takeaways
+
+  // Optional extended project metadata
+  competitionResult?: string;
+  competitionSeason?: string;
+  keyContributions?: string[];
+  engineeringFocus?: string[];
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -106,72 +112,208 @@ export const personalProjects: PersonalProject[] = [
 // ═══════════════════════════════════════════════════════════════
 export const teamProjects: TeamProject[] = [
   {
-    id: "usst-rocket",
-    title: "USST Hybrid Rocket Engine",
-    objective: "Design and test a student-built hybrid rocket propulsion system",
-    teamSize: 12,
+    id: "usst-rocketry",
+    title: "Project \"UP\" - USST Rocketry",
+    objective:
+      "Design, manufacture, and compete with an M class high power rocket at Launch Canada 2025 while optimizing propulsion integration and aerodynamic performance.",
+    teamSize: 24,
     myTitle: "Propulsion Lead",
-    peopleManaged: 6,
-    technologies: ["SolidWorks", "MATLAB", "Sensor Integration"],
-    role: "Oversaw engine design, testing, and safety protocols",
+    peopleManaged: 3,
+    technologies: [
+      "SolidWorks",
+      "Fusion 360",
+      "ANSYS FEA",
+      "OpenRocket",
+      "MATLAB",
+      "Excel",
+      "Composite Manufacturing",
+      "CNC Machining",
+    ],
+    role: "Led propulsion integration and aft-end subsystem design for competition flight",
     span: 3,
     description:
-      "Led the propulsion sub-team in designing a hybrid rocket engine using nitrous oxide and HTPB. Conducted multiple static fire tests and iterated on injector and combustion chamber design.",
-
-    // Detail page content
-    myFocus:
-      "Injector plate design and CFD analysis of the combustion chamber flow dynamics.",
+      "Led propulsion integration for an M class high power rocket competing at Launch Canada 2025. Personally responsible for the aft end propulsion interface including the composite boat tail, aluminum thrust plate, and threaded crown motor retention system. Approached the subsystem as a system level engineering problem balancing aerodynamic drag reduction, structural integrity, stability margins, and field serviceability. Used drag area analysis and structural FEA to validate design decisions. Final configuration contributed to a significant increase in apogee performance, reaching 16,500 ft and placing 8th nationally.",
+    competitionResult:
+      "8th nationally at Launch Canada 2025, 16,500 ft apogee, Spirit Bear Award for community impact",
+    keyContributions: [
+      "Designed and manufactured composite aerodynamic boat tail for base drag reduction",
+      "Engineered threaded external motor retention system for serviceability and axial load transfer",
+      "Developed thrust plate ensuring clean thrust load path into fuselage",
+      "Performed structural simulation at 8 kN thrust loads",
+      "Used Rayleigh drag relation to justify aerodynamic performance gains",
+    ],
+    engineeringFocus: [
+      "Aerodynamic drag reduction",
+      "Structural load path design",
+      "Motor integration and CG optimization",
+      "Manufacturability and serviceability",
+      "System level design tradeoff analysis",
+    ],
     problemGoal:
-      "Design, build, and static-fire test a hybrid rocket engine for the university rocketry team's competition entry.",
+      "Design, manufacture, and compete with an M class high power rocket at Launch Canada 2025 while optimizing propulsion integration and aerodynamic performance.",
+    myFocus:
+      "Aerodynamic drag reduction, structural load path design, motor integration and CG optimization, manufacturability, and system-level tradeoff analysis.",
     roleAndProcess:
-      "As Propulsion Lead I managed 6 engineers, defined the test plan, led design reviews, and coordinated with the structures team for integration. I personally designed the injector plate and ran CFD analysis.",
-    toolsUsed: ["SolidWorks", "MATLAB", "ANSYS Fluent", "LabVIEW", "Lathe & Mill"],
+      "Designed and manufactured a composite aerodynamic boat tail, engineered a threaded external motor retention system, developed an aluminum thrust plate for clean load transfer into the fuselage, and validated key design choices through structural simulation and drag analysis.",
+    toolsUsed: [
+      "SolidWorks",
+      "Fusion 360",
+      "ANSYS FEA",
+      "OpenRocket",
+      "MATLAB",
+      "Excel",
+      "Composite Manufacturing",
+      "CNC Machining",
+    ],
     outcome:
-      "Completed 4 successful static fires. Engine delivered 1,200 N thrust for 6 s burn time. Team placed 3rd nationally.",
+      "Placed 8th nationally at Launch Canada 2025, achieved 16,500 ft apogee, and received the Spirit Bear Award for community impact.",
   },
   {
-    id: "cansat",
-    title: "CanSat Competition Entry",
-    objective: "Build a satellite in a can that collects atmospheric data during descent",
-    teamSize: 8,
-    myTitle: "Electrical Lead",
-    peopleManaged: 3,
-    technologies: ["Arduino", "C++", "PCB Design", "Telemetry"],
-    role: "Designed the avionics and telemetry systems",
+    id: "frc-4627-manning",
+    title: "FRC 4627 Manning Robotics - Drivetrain Development",
+    objective:
+      "Design and optimize competition drivetrain systems for FIRST Robotics Competition performance.",
+    teamSize: 20,
+    myTitle: "Mechanical Drivetrain Lead",
+    peopleManaged: 5,
+    technologies: [
+      "SolidWorks",
+      "Excel",
+      "Mechanical Power Transmission",
+      "Gear Ratio Optimization",
+      "Swerve Drive Systems",
+      "DC Motor Analysis",
+    ],
+    role: "Led drivetrain architecture, analysis, and subsystem execution for competition performance",
     span: 2,
     description:
-      "Developed the avionics stack for a CanSat competition entry, including sensor integration, real-time telemetry downlink, and GPS tracking with a custom PCB.",
-
-    myFocus:
-      "PCB design and telemetry firmware — ensuring reliable data downlink during descent.",
+      "Served as Mechanical Drivetrain Lead for FRC Team 4627, overseeing drivetrain design and performance optimization for the 2023 competition season. Led a team developing both a dual tank drive system and the team's first swerve drive prototype. Performed torque speed analysis and gear ratio optimization using motor specifications and Excel based modeling to balance acceleration and pushing power. Managed subsystem fabrication, testing, and integration under strict build season timelines.",
+    competitionSeason: "2023 FRC Season",
+    keyContributions: [
+      "Led development of team's first swerve drive prototype",
+      "Directed drivetrain subsystem design for primary competition robot",
+      "Optimized dual tank drive system with 8:1 gear ratio",
+      "Performed torque and speed analysis using motor data sheets and Excel modeling",
+      "Managed drivetrain manufacturing and assembly timeline",
+    ],
+    engineeringFocus: [
+      "Gear ratio optimization",
+      "Torque speed tradeoff analysis",
+      "Mechanical integration under competition constraints",
+      "Rapid prototyping and iterative testing",
+      "Subsystem leadership and coordination",
+    ],
     problemGoal:
-      "Create a reliable avionics and telemetry system that fits inside a 350 ml soda-can form-factor and survives a 1 km drop.",
+      "Design and optimize competition drivetrain systems for FIRST Robotics Competition performance.",
+    myFocus:
+      "Gear ratio optimization, torque-speed tradeoff analysis, drivetrain integration under competition constraints, and subsystem leadership.",
     roleAndProcess:
-      "Led the electrical sub-team of 3. Designed the PCB schematic and layout, selected components, wrote the telemetry firmware, and ran environmental testing.",
-    toolsUsed: ["KiCad", "Arduino IDE", "C++", "LoRa Module", "Logic Analyzer"],
+      "Led drivetrain subsystem design for the competition robot, directed development of the team's first swerve prototype, optimized a dual tank drive with an 8:1 ratio, and managed manufacturing and assembly schedules through the build season.",
+    toolsUsed: [
+      "SolidWorks",
+      "Excel",
+      "Mechanical Power Transmission",
+      "Gear Ratio Optimization",
+      "Swerve Drive Systems",
+      "DC Motor Analysis",
+    ],
     outcome:
-      "System transmitted 10 Hz telemetry over 2 km range with zero packet loss. Team finished in the top 10 nationally.",
+      "Delivered competition-ready drivetrain systems for the 2023 FRC season, including a validated 8:1 tank setup and a successful first swerve prototype.",
   },
   {
-    id: "solar-car",
-    title: "Solar-Powered Vehicle",
-    objective: "Design an energy-efficient solar-powered vehicle for competition",
-    teamSize: 20,
-    myTitle: "Electrical Systems Engineer",
-    technologies: ["AutoCAD", "Power Electronics", "Battery Management"],
-    role: "Designed the power distribution network",
+    id: "skills-alberta-2023",
+    title: "Skills Alberta Robotics Competition 2023",
+    objective:
+      "Design and deploy a coordinated multi robot system to compete in a provincial robotics challenge.",
+    teamSize: 3,
+    myTitle: "Mechanical and Systems Lead",
+    peopleManaged: 2,
+    technologies: [
+      "Mechanum Drive",
+      "Robot Coordination",
+      "Rapid Prototyping",
+      "Mechanical Design",
+      "Embedded Control",
+    ],
+    role: "Co-led strategy and mechanical systems for a coordinated two-robot architecture",
     span: 1,
     description:
-      "Contributed to the electrical systems of a solar-powered vehicle, focusing on maximum power point tracking (MPPT) and battery management system design.",
-
-    myFocus:
-      "MPPT controller design and battery management system wiring and validation.",
+      "Competed provincially in the 2023 Skills Alberta Robotics Competition, placing 3rd overall. Our team engineered a coordinated two robot solution consisting of a mechanum drive shooter platform and a secondary robot dedicated to ball collection and feeding. The system design focused on maximizing scoring efficiency through division of labor and controlled positioning. Contributed to drivetrain implementation, shooting system design, and overall strategy optimization under strict competition timelines.",
+    competitionResult: "3rd Place Provincially",
+    keyContributions: [
+      "Co designed dual robot strategy using shooter bot and collector bot",
+      "Implemented mechanum drive system for omnidirectional positioning",
+      "Optimized shooting mechanism for repeatable scoring accuracy",
+      "Coordinated subsystem integration under limited development time",
+    ],
+    engineeringFocus: [
+      "System level strategy design",
+      "Omnidirectional drivetrain implementation",
+      "Mechanical shooter mechanism development",
+      "Multi robot task allocation",
+      "Rapid competition prototyping",
+    ],
     problemGoal:
-      "Develop the power electronics that maximise energy harvest from the solar array while safely managing a 48 V lithium-ion battery pack.",
+      "Design and deploy a coordinated multi robot system to compete in a provincial robotics challenge.",
+    myFocus:
+      "System-level strategy, mechanum drivetrain implementation, shooter mechanism design, and multi-robot task allocation.",
     roleAndProcess:
-      "Worked within the electrical team to design the MPPT controller, wire the battery management system, and validate the full power path on a test bench before vehicle integration.",
-    toolsUsed: ["AutoCAD", "LTspice", "Altium Designer", "Multimeter", "Power Supply"],
+      "Co-designed a two-robot scoring strategy, implemented the mechanum drivetrain for precise positioning, iterated on the shooter mechanism for repeatable scoring, and coordinated integration under strict competition timelines.",
+    toolsUsed: [
+      "Mechanum Drive",
+      "Robot Coordination",
+      "Rapid Prototyping",
+      "Mechanical Design",
+      "Embedded Control",
+    ],
     outcome:
-      "Achieved 97% MPPT efficiency. Battery pack passed all safety checks and the vehicle completed the competition endurance event.",
+      "Placed 3rd at the provincial level with a coordinated shooter-collector architecture that improved scoring throughput.",
+  },
+  {
+    id: "nasa-space-apps-2024",
+    title: "NASA Space Apps Challenge 2024 - ExoSpace",
+    objective:
+      "Develop a web based platform that visualizes NASA open data to improve accessibility and educational impact within a 48 hour hackathon.",
+    teamSize: 6,
+    myTitle: "Systems and Product Lead",
+    technologies: [
+      "Web Development",
+      "NASA Open Data",
+      "GIS",
+      "Spatial Data Visualization",
+      "Open Source Mapping",
+    ],
+    role: "Led system direction and data-to-story mapping for a community-focused geospatial platform",
+    span: 2,
+    description:
+      "Built ExoSpace during the NASA Space Apps Challenge 2024 as a web-based platform for exploring open-source NASA and community datasets through spatial visualization. The team framed the product around a community storytelling map, combining Earth observation data with local contextual layers to surface patterns, trends, and anomalies in a form accessible to non-experts.",
+    keyContributions: [
+      "Defined the community mapping problem and system narrative for the hackathon scope",
+      "Structured open-source spatial datasets into a map-first exploration workflow",
+      "Coordinated rapid feature tradeoffs to deliver a working demo in 48 hours",
+      "Integrated science-backed geospatial context to improve educational usability",
+    ],
+    engineeringFocus: [
+      "Spatial data storytelling",
+      "Open-data integration",
+      "Rapid product prototyping",
+      "Map-based user experience design",
+      "Time-boxed system tradeoff decisions",
+    ],
+    problemGoal:
+      "Develop a web based platform that visualizes NASA open data to improve accessibility and educational impact within a 48 hour hackathon.",
+    myFocus:
+      "System-level product framing, open-data integration strategy, and map-based storytelling to connect physical geography with community issues.",
+    roleAndProcess:
+      "Worked with a six-person team to define scope, identify relevant open datasets, and build a map-centric experience that layered Earth observation and community context. Prioritized rapid iteration and clear visual communication to ship a complete demo within hackathon constraints.",
+    toolsUsed: [
+      "Web Development",
+      "NASA Open Data",
+      "GIS",
+      "Spatial Data Visualization",
+      "Open Source Mapping",
+    ],
+    outcome:
+      "Delivered a complete 48-hour hackathon prototype that made NASA open data more accessible through an interactive community map narrative.",
   },
 ];
