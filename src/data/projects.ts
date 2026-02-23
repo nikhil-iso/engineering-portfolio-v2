@@ -21,6 +21,7 @@ export interface PersonalProject {
   roleAndProcess: string;        // Your specific role and the process you followed
   toolsUsed: string[];           // Tools, software, languages used
   outcome: string;               // Quantifiable results or key takeaways
+  images?: string[];             // Image paths for project gallery (e.g. ["/projects/my-project/photo1.jpg"])
 }
 
 // ── Team Project shape ───────────────────────────────────────
@@ -42,6 +43,8 @@ export interface TeamProject {
   roleAndProcess: string;        // Your specific role and the process you followed
   toolsUsed: string[];           // Tools, software, languages used
   outcome: string;               // Quantifiable results or key takeaways
+
+  images?: string[];             // Image paths for project gallery (e.g. ["/projects/my-project/photo1.jpg"])
 
   // Optional extended project metadata
   competitionResult?: string;
@@ -71,6 +74,7 @@ export const personalProjects: PersonalProject[] = [
     toolsUsed: ["KiCad", "STM32CubeIDE", "Soldering Station", "Oscilloscope"],
     outcome:
       "Successfully fabricated and tested 3 board revisions. Final board achieved < 1% sensor read error and fit within a 50 × 40 mm footprint.",
+    images: ["/placeholder.svg", "/placeholder.svg"],
   },
   {
     id: "home-automation",
@@ -87,6 +91,7 @@ export const personalProjects: PersonalProject[] = [
     toolsUsed: ["Arduino IDE", "C++", "ESP8266", "Fusion 360", "HTML/CSS"],
     outcome:
       "Deployed 6 sensor nodes across the house. System runs fully offline with < 200 ms response times.",
+    images: ["/placeholder.svg", "/placeholder.svg"],
   },
   {
     id: "robot-arm",
@@ -103,6 +108,7 @@ export const personalProjects: PersonalProject[] = [
     toolsUsed: ["SolidWorks", "Python", "Arduino", "3D Printer"],
     outcome:
       "Achieved ± 2 mm positional repeatability. Demonstrated live pick-and-place of small objects during the final presentation.",
+    images: ["/placeholder.svg", "/placeholder.svg"],
   },
 ];
 
@@ -167,6 +173,7 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Placed 8th nationally at Launch Canada 2025, achieved 16,500 ft apogee, and received the Spirit Bear Award for community impact.",
+    images: ["/placeholder.svg", "/placeholder.svg"],
   },
   {
     id: "frc-4627-manning",
@@ -219,6 +226,7 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Delivered competition-ready drivetrain systems for the 2023 FRC season, including a validated 8:1 tank setup and a successful first swerve prototype.",
+    images: ["/placeholder.svg", "/placeholder.svg"],
   },
   {
     id: "skills-alberta-2023",
@@ -268,6 +276,7 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Placed 3rd at the provincial level with a coordinated shooter-collector architecture that improved scoring throughput.",
+    images: ["/placeholder.svg", "/placeholder.svg"],
   },
   {
     id: "nasa-space-apps-2024",
@@ -315,5 +324,6 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Delivered a complete 48-hour hackathon prototype that made NASA open data more accessible through an interactive community map narrative.",
+    images: ["/placeholder.svg", "/placeholder.svg"],
   },
 ];
