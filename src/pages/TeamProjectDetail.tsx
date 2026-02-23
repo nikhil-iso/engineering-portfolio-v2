@@ -1,7 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Target, UserCheck, Wrench, BarChart3, Users, Briefcase } from "lucide-react";
+import { ArrowLeft, Target, UserCheck, Wrench, BarChart3, Users, Briefcase, ImageIcon } from "lucide-react";
 import { teamProjects } from "@/data/projects";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const TeamProjectDetail = () => {
   const { id } = useParams();
@@ -82,6 +83,25 @@ const TeamProjectDetail = () => {
               </div>
             </div>
           </div>
+
+          {/* Project Images */}
+          {project.images && project.images.length > 0 && (
+            <div className="mt-10">
+              <div className="flex items-center gap-2 mb-4">
+                <ImageIcon className="w-5 h-5 text-primary" />
+                <h3 className="text-sm font-semibold text-foreground">Project Gallery</h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {project.images.map((src, i) => (
+                  <div key={i} className="glow-border rounded-xl overflow-hidden bg-card/50">
+                    <AspectRatio ratio={16 / 9}>
+                      <img src={src} alt={`${project.title} image ${i + 1}`} className="w-full h-full object-cover" />
+                    </AspectRatio>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Technologies */}
           <div className="mt-8">
