@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Target, UserCheck, Wrench, BarChart3 } from "lucide-react";
 import { personalProjects } from "@/data/projects";
 
 const PersonalProjectDetail = () => {
@@ -26,33 +26,62 @@ const PersonalProjectDetail = () => {
         </Link>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="w-full h-56 rounded-xl bg-muted/30 glow-border flex items-center justify-center mb-8">
-            <span className="text-6xl opacity-30">🚀</span>
-          </div>
-
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{project.title}</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">{project.title}</h1>
           <p className="text-muted-foreground leading-relaxed mb-8">{project.description}</p>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="glow-border rounded-xl p-5 bg-card/50">
-              <h3 className="text-sm font-semibold text-primary mb-3">Relevant Skills</h3>
-              <div className="flex flex-wrap gap-2">
-                {project.skills.map((s) => (
-                  <span key={s} className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
-                    {s}
-                  </span>
-                ))}
+          <div className="space-y-6">
+            {/* Problem / Goal */}
+            <div className="glow-border rounded-xl p-5 bg-card/50 flex items-start gap-3">
+              <Target className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <h3 className="text-sm font-semibold text-primary mb-1">Problem / Goal</h3>
+                <p className="text-sm text-muted-foreground">{project.problemGoal}</p>
               </div>
             </div>
-            <div className="glow-border rounded-xl p-5 bg-card/50">
-              <h3 className="text-sm font-semibold text-secondary mb-3">Learning Experiences</h3>
-              <ul className="space-y-2">
-                {project.learnings.map((l) => (
-                  <li key={l} className="text-sm text-muted-foreground flex items-start gap-2">
-                    <span className="text-secondary mt-0.5">•</span> {l}
-                  </li>
-                ))}
-              </ul>
+
+            {/* My Role & Process */}
+            <div className="glow-border rounded-xl p-5 bg-card/50 flex items-start gap-3">
+              <UserCheck className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
+              <div>
+                <h3 className="text-sm font-semibold text-secondary mb-1">My Role &amp; Process</h3>
+                <p className="text-sm text-muted-foreground">{project.roleAndProcess}</p>
+              </div>
+            </div>
+
+            {/* Tools Used */}
+            <div className="glow-border rounded-xl p-5 bg-card/50 flex items-start gap-3">
+              <Wrench className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <h3 className="text-sm font-semibold text-primary mb-1">Tools Used</h3>
+                <div className="flex flex-wrap gap-2 mt-1">
+                  {project.toolsUsed.map((t) => (
+                    <span key={t} className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Quantifiable Outcome */}
+            <div className="glow-border rounded-xl p-5 bg-card/50 flex items-start gap-3">
+              <BarChart3 className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
+              <div>
+                <h3 className="text-sm font-semibold text-secondary mb-1">Outcome</h3>
+                <p className="text-sm text-muted-foreground">{project.outcome}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Skills */}
+          <div className="mt-8">
+            <h3 className="text-sm font-semibold text-foreground mb-3">Skills</h3>
+            <div className="flex flex-wrap gap-2">
+              {project.skills.map((s) => (
+                <span key={s} className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
+                  {s}
+                </span>
+              ))}
             </div>
           </div>
         </motion.div>

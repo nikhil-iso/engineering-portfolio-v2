@@ -33,7 +33,7 @@ const PersonalProjects = () => {
               <ProjectCard
                 id={project.id}
                 title={project.title}
-                subtitle={project.learnings[0]}
+                subtitle={project.description}
                 tags={project.skills}
                 type="personal"
                 span={project.span}
