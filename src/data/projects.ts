@@ -38,6 +38,7 @@ export interface TeamProject {
 
   // ── Detail page fields (shown on /team-projects/:id) ───────
   problemGoal: string;           // What problem were you solving or what was the goal?
+  myFocus: string;               // What you specifically focused on / your area of expertise
   roleAndProcess: string;        // Your specific role and the process you followed
   toolsUsed: string[];           // Tools, software, languages used
   outcome: string;               // Quantifiable results or key takeaways
@@ -118,6 +119,8 @@ export const teamProjects: TeamProject[] = [
       "Led the propulsion sub-team in designing a hybrid rocket engine using nitrous oxide and HTPB. Conducted multiple static fire tests and iterated on injector and combustion chamber design.",
 
     // Detail page content
+    myFocus:
+      "Injector plate design and CFD analysis of the combustion chamber flow dynamics.",
     problemGoal:
       "Design, build, and static-fire test a hybrid rocket engine for the university rocketry team's competition entry.",
     roleAndProcess:
@@ -139,6 +142,8 @@ export const teamProjects: TeamProject[] = [
     description:
       "Developed the avionics stack for a CanSat competition entry, including sensor integration, real-time telemetry downlink, and GPS tracking with a custom PCB.",
 
+    myFocus:
+      "PCB design and telemetry firmware — ensuring reliable data downlink during descent.",
     problemGoal:
       "Create a reliable avionics and telemetry system that fits inside a 350 ml soda-can form-factor and survives a 1 km drop.",
     roleAndProcess:
@@ -159,6 +164,8 @@ export const teamProjects: TeamProject[] = [
     description:
       "Contributed to the electrical systems of a solar-powered vehicle, focusing on maximum power point tracking (MPPT) and battery management system design.",
 
+    myFocus:
+      "MPPT controller design and battery management system wiring and validation.",
     problemGoal:
       "Develop the power electronics that maximise energy harvest from the solar array while safely managing a 48 V lithium-ion battery pack.",
     roleAndProcess:

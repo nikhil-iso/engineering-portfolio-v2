@@ -49,6 +49,15 @@ const TeamProjectDetail = () => {
               </div>
             </div>
 
+            {/* My Focus Area */}
+            <div className="glow-border rounded-xl p-5 bg-card/50 flex items-start gap-3">
+              <Briefcase className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+              <div>
+                <h3 className="text-sm font-semibold text-primary mb-1">My Focus Area</h3>
+                <p className="text-sm text-muted-foreground">{project.myFocus}</p>
+              </div>
+            </div>
+
             {/* Tools Used */}
             <div className="glow-border rounded-xl p-5 bg-card/50 flex items-start gap-3">
               <Wrench className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
