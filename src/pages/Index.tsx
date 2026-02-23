@@ -89,7 +89,7 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Profile photo placeholder */}
+          {/* Profile photo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -97,13 +97,20 @@ const Index = () => {
             className="shrink-0"
           >
             <div
-              className="w-52 h-52 md:w-64 md:h-64 rounded-full glow-border bg-card/60 backdrop-blur-sm flex flex-col items-center justify-center relative overflow-hidden"
+              className="w-52 h-52 md:w-64 md:h-64 rounded-full glow-border bg-card/60 backdrop-blur-sm relative overflow-hidden"
               style={{ boxShadow: "0 0 40px hsl(260 80% 60% / 0.3), 0 0 80px hsl(220 80% 55% / 0.15)" }}
             >
               {/* Gradient background inside circle */}
               <div className="absolute inset-0 rounded-full" style={{ background: "radial-gradient(circle at 60% 35%, hsl(260 80% 60% / 0.18), hsl(220 80% 55% / 0.1) 60%, transparent)" }} />
-              <User className="w-20 h-20 text-primary/60 relative z-10" />
-              <span className="text-xs text-muted-foreground mt-2 relative z-10 font-medium">Your photo here</span>
+              <img
+                src="/profile-photo.JPG"
+                alt="Portrait of Nikhil Patel"
+                className="relative z-10 h-full w-full object-cover"
+                loading="eager"
+                onError={(e) => {
+                  e.currentTarget.src = "/placeholder.svg";
+                }}
+              />
             </div>
           </motion.div>
         </motion.div>
