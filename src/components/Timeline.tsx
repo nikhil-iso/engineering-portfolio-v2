@@ -25,7 +25,6 @@ const timelineItems = [
     description: "NASA Space Apps 2024 - My First ever Hackathon where my team built an education platform for exploring exoplanets.",
     projects: [
       { label: "NASA Space Apps Challenge 2024 - ExoSpace", path: "/team-projects/nasa-space-apps-2024" },
-      { label: "Home Automation System", path: "/personal-projects/home-automation" },
     ],
   },
   {
@@ -41,7 +40,7 @@ const timelineItems = [
     title: "Launch Canada 2026",
     description: "Project 'UP 2: Down' - My second rocket competition. Utilizing learning experiences gained from the first to improve on our past design.",
     projects: [
-      { label: "Project \"UP\" - USST Rocketry", path: "/team-projects/usst-rocketry" },
+      { label: "Project \"UP 2: Down\" - USST Rocketry", path: "/team-projects/usst-rocketry-up2" },
     ],
   },
 ];
