@@ -180,7 +180,7 @@ export const teamProjects: TeamProject[] = [
     title: "FRC 4627 Manning Robotics - Drivetrain Development",
     objective:
       "Design and optimize competition drivetrain systems for FIRST Robotics Competition performance.",
-    teamSize: 20,
+    teamSize: 40,
     myTitle: "Mechanical Drivetrain Lead",
     peopleManaged: 5,
     technologies: [
@@ -235,7 +235,6 @@ export const teamProjects: TeamProject[] = [
       "Design and deploy a coordinated multi robot system to compete in a provincial robotics challenge.",
     teamSize: 3,
     myTitle: "Mechanical and Systems Lead",
-    peopleManaged: 2,
     technologies: [
       "Mechanum Drive",
       "Robot Coordination",
