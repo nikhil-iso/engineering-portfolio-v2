@@ -59,56 +59,55 @@ export interface TeamProject {
 // ═══════════════════════════════════════════════════════════════
 export const personalProjects: PersonalProject[] = [
   {
-    id: "custom-pcb",
-    title: "Custom PCB Design",
+    id: "simulight-sunrise",
+    title: "SimuLight Sunrise",
     description:
-      "Designed and fabricated a custom PCB for sensor data acquisition. The board features an STM32 microcontroller with integrated power regulation and communication interfaces.",
-    skills: ["KiCad", "Circuit Design", "Soldering"],
-    span: 1,
-
-    // Detail page content — edit these for the full project page
-    problemGoal:
-      "Needed a compact, reliable data-acquisition board that could read multiple analog sensors and transmit data over UART.",
-    roleAndProcess:
-      "Sole designer. Went from schematic capture in KiCad through PCB layout, fabrication ordering, hand-soldering SMD components, and firmware bring-up.",
-    toolsUsed: ["KiCad", "STM32CubeIDE", "Soldering Station", "Oscilloscope"],
-    outcome:
-      "Successfully fabricated and tested 3 board revisions. Final board achieved < 1% sensor read error and fit within a 50 × 40 mm footprint.",
-    images: ["/placeholder.svg", "/placeholder.svg"],
-  },
-  {
-    id: "home-automation",
-    title: "Home Automation System",
-    description:
-      "Built a home automation system using Arduino-based controllers to manage lighting, temperature, and security sensors with a custom mobile dashboard.",
-    skills: ["Arduino", "C++", "IoT", "3D Printing"],
+      "An open-source sunrise alarm clock that gradually increases room brightness to work with natural sleep cycles, featuring Wi-Fi scheduling, smooth easing ramp curves, and full documentation for reproducibility.",
+    skills: ["ESP32", "C++", "Python", "Circuit Design", "3D Printing", "Open Source"],
     span: 2,
 
     problemGoal:
-      "Wanted a low-cost, modular home automation setup that didn't depend on cloud services.",
+      "Standard alarm clocks felt harsh, and commercial sunrise lamps were either closed-source, lacked scheduling/customization, or were too expensive for experimentation. The goal was to design a fully open-source sunrise alarm that gradually increases brightness to transition the body toward wakefulness more naturally — including the hardware, firmware, enclosure, and documentation.",
     roleAndProcess:
-      "Designed the hardware nodes, wrote the firmware in C++, 3D-printed custom enclosures, and built a local web dashboard for control.",
-    toolsUsed: ["Arduino IDE", "C++", "ESP8266", "Fusion 360", "HTML/CSS"],
+      "Sole designer and developer. The design centers on a Wi-Fi capable microcontroller (ESP32) controlling a high-current MOSFET to drive a 12V lighting load, with a DS3231 RTC as a fallback time base for schedule reliability without network access. Brightness transitions use smooth Bezier-style easing over configurable 30–90 minute windows rather than simple linear ramps. Scheduling and overrides are handled through lightweight JSON-style control objects, making it easy to add features like sunset routines or weekend schedules without rewriting the architecture. Built a Python desktop utility for adjusting ramp profiles and scheduler presets without manual reflashing. Documentation was written for full third-party reproducibility — including circuit/BOM packages, firmware notes, scheduler logic, quick-start smart-home integration guide, and a calibration/troubleshooting section.",
+    toolsUsed: ["ESP32", "C++", "Python", "DS3231 RTC", "MOSFET Switching", "KiCad", "Fusion 360", "JSON", "GitHub"],
     outcome:
-      "Deployed 6 sensor nodes across the house. System runs fully offline with < 200 ms response times.",
+      "Lamp ramps from off to full brightness with no perceptible stepping. Schedule execution remains consistent even without network (RTC fallback). PWM tuned to minimize visible flicker, mid-80% efficiency range depending on load. Ran a small user trial (~6 users) with qualitative feedback pointing to reduced grogginess compared to traditional alarms, guiding default ramp curve selection.",
+    images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+  },
+  {
+    id: "arduino-macropad",
+    title: "Arduino-Based Macropad",
+    description:
+      "A low-cost, customizable macro keypad built around an Arduino Micro with native USB HID support, designed for accessibility users and power users with modular switch/encoder support.",
+    skills: ["Arduino", "C++", "USB HID", "CAD", "3D Printing", "Open Source"],
+    span: 2,
+
+    problemGoal:
+      "Many existing macro keyboards are closed-source, expensive, or inflexible in hardware and firmware customization. The goal was to build a modifiable, cross-platform input device that could be adapted to different user requirements — particularly for accessibility needs or specialized workflows — while remaining serviceable and modular.",
+    roleAndProcess:
+      "Sole designer and developer. Built around an Arduino Micro for native USB HID support. The hardware consists of a 4×2 key matrix using Cherry MX mechanical switches, supporting rapid iteration and hot-swap replacement without desoldering. Developed custom firmware implementing multi-profile macro storage, per-key remapping, and adjustable debounce timing — all handled deterministically in firmware without host-side software dependencies. Designed and 3D-printed an ergonomic enclosure with a slight typing angle, plus custom keycaps for clearer labeling and alternative geometries. Documentation covers HID report handling, macro execution logic, complete BOM, wiring diagrams, enclosure assembly, and accessibility contribution guidelines.",
+    toolsUsed: ["Arduino Micro", "C++", "USB HID", "Cherry MX Switches", "Fusion 360", "3D Printing", "GitHub"],
+    outcome:
+      "Plug-and-play USB HID operation on Windows, macOS, and Linux with no drivers required. Sub-5 ms debounce variance for responsive input. Assembly time under 30 minutes per unit. Open-source release resulted in early community engagement validating the project's relevance and extensibility.",
     images: ["/placeholder.svg", "/placeholder.svg"],
   },
   {
-    id: "robot-arm",
-    title: "3-DOF Robotic Arm",
+    id: "opencv-detection-platform",
+    title: "OpenCV Detection Platform",
     description:
-      "Designed and built a 3-degree-of-freedom robotic arm with Python-based control software for pick-and-place operations.",
-    skills: ["SolidWorks", "Python", "Servo Control"],
-    span: 1,
+      "An image detection system using the OpenCV library to identify patterns through a webcam and drive motors to target detected objects — inspired by Carbon Robotics' laser weeder for industrial farms.",
+    skills: ["Python", "OpenCV", "Computer Vision", "Motor Control", "Embedded Systems"],
+    span: 2,
 
     problemGoal:
-      "Build an affordable desktop robotic arm capable of repeatable pick-and-place tasks for a university project.",
+      "Develop a computer vision platform that can detect specific patterns or objects through a live webcam feed and actuate motors to physically target them. The concept is inspired by Carbon Robotics' laser weeder — an industrial farming tool that identifies weeds and destroys them with a laser. This project aims to replicate that detection-and-targeting pipeline at a smaller scale.",
     roleAndProcess:
-      "Modeled the arm in SolidWorks, 3D-printed the links, and wrote a Python inverse-kinematics solver to drive servo motors over serial.",
-    toolsUsed: ["SolidWorks", "Python", "Arduino", "3D Printer"],
+      "Currently in active development. Building the vision pipeline using Python and OpenCV for real-time pattern recognition, with motor control integration to physically track and target detected objects. The system architecture separates detection, tracking, and actuation into modular stages for easier iteration and testing.",
+    toolsUsed: ["Python", "OpenCV", "Webcam", "Motor Controllers", "Embedded Systems"],
     outcome:
-      "Achieved ± 2 mm positional repeatability. Demonstrated live pick-and-place of small objects during the final presentation.",
-    images: ["/placeholder.svg", "/placeholder.svg"],
+      "Project is currently in progress — detection pipeline and motor integration under active development.",
+    images: ["/placeholder.svg"],
   },
 ];
 
@@ -119,7 +118,7 @@ export const personalProjects: PersonalProject[] = [
 export const teamProjects: TeamProject[] = [
 
   {
-    id: "usst-rocketry",
+    id: "usst-rocketry-up2",
     title: "Project \"UP 2: Down\" - USST Rocketry",
     objective:
       "Redesign, modify, and compete with an upgraded and modified \"Project UP\" at Launch Canada 2026 while improving on the previous years shortcomings. ",
