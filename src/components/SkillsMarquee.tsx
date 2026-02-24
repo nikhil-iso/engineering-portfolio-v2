@@ -41,16 +41,26 @@ const skillCategories = [
 ];
 
 const MIN_ITEMS = 12;
+const BASE_MARQUEE_DURATION_SECONDS = 30;
+const REFERENCE_ROW_TITLE = "Platforms";
 
 const SkillsMarquee = memo(function SkillsMarquee() {
-  const rows = useMemo(() =>
-    skillCategories.map((category) => {
+  const rows = useMemo(() => {
+    const preparedRows = skillCategories.map((category) => {
       const repeatCount = Math.max(1, Math.ceil(MIN_ITEMS / category.skills.length));
       const repeated = Array.from({ length: repeatCount }, () => category.skills).flat();
       const looped = [...repeated, ...repeated];
-      return { ...category, looped };
-    }),
-  []);
+      return { ...category, looped, travelUnits: repeated.length };
+    });
+
+    const referenceTravelUnits =
+      preparedRows.find((row) => row.title === REFERENCE_ROW_TITLE)?.travelUnits ?? preparedRows[0]?.travelUnits ?? 1;
+
+    return preparedRows.map((row) => ({
+      ...row,
+      animationDurationSeconds: (BASE_MARQUEE_DURATION_SECONDS * row.travelUnits) / referenceTravelUnits,
+    }));
+  }, []);
 
   return (
     <section className="py-16">
@@ -65,7 +75,10 @@ const SkillsMarquee = memo(function SkillsMarquee() {
           <div className="marquee-row overflow-hidden relative mx-auto w-full md:w-[75%]">
             <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
             <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
-            <div className="flex w-max animate-marquee">
+            <div
+              className="flex w-max animate-marquee"
+              style={{ animationDuration: `${category.animationDurationSeconds}s` }}
+            >
               {category.looped.map((skill, i) => (
                 <div
                   key={i}
@@ -90,4 +103,3 @@ const SkillsMarquee = memo(function SkillsMarquee() {
 });
 
 export default SkillsMarquee;
-

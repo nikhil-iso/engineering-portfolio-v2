@@ -117,6 +117,73 @@ export const personalProjects: PersonalProject[] = [
 // Add new projects by copying an object and changing the fields.
 // ═══════════════════════════════════════════════════════════════
 export const teamProjects: TeamProject[] = [
+
+  {
+    id: "usst-rocketry",
+    title: "Project \"UP 2: Down\" - USST Rocketry",
+    objective:
+      "Redesign, modify, and compete with an upgraded and modified \"Project UP\" at Launch Canada 2026 while improving on the previous years shortcomings. ",
+    teamSize: 26,
+    myTitle: "Propulsion Lead",
+    peopleManaged: 2,
+    technologies: [
+      "SolidWorks",
+      "Fusion 360",
+      "ANSYS FEA",
+      "OpenRocket",
+      "MATLAB",
+      "Excel",
+      "Composite Manufacturing",
+      "CNC Machining",
+    ],
+    role: "Led propulsion optimization and aft-end subsystem design for competition flight",
+    span: 3,
+    description:
+      "During Janurary of 2026, I was elected President of the USST, where I shifted my focus from entirely technical to take on greater tasks such as project management and team organization. I preformed organizational duties on top of my .",
+    competitionResult:
+      "8th nationally at Launch Canada 2025, 16,500 ft apogee, Spirit Bear Award for community impact",
+    keyContributions: [
+      "Designed and manufactured composite aerodynamic boat tail for base drag reduction",
+      "Engineered threaded external motor retention system for serviceability and axial load transfer",
+      "Developed thrust plate ensuring clean thrust load path into fuselage",
+      "Performed structural simulation at 8 kN thrust loads",
+      "Used Rayleigh drag relation to justify aerodynamic performance gains",
+    ],
+    engineeringFocus: [
+      "Aerodynamic drag reduction",
+      "Structural load path design",
+      "Motor integration and CG optimization",
+      "Manufacturability and serviceability",
+      "System level design tradeoff analysis",
+    ],
+    problemGoal:
+      "Design, manufacture, and compete with an M class high power rocket at Launch Canada 2025 while optimizing propulsion integration and aerodynamic performance.",
+    myFocus:
+      "Aerodynamic drag reduction, structural load path design, motor integration and CG optimization, manufacturability, and system-level tradeoff analysis.",
+    roleAndProcess:
+      "Designed and manufactured a composite aerodynamic boat tail, engineered a threaded external motor retention system, developed an aluminum thrust plate for clean load transfer into the fuselage, and validated key design choices through structural simulation and drag analysis.",
+    toolsUsed: [
+      "SolidWorks",
+      "Fusion 360",
+      "ANSYS FEA",
+      "OpenRocket",
+      "MATLAB",
+      "Excel",
+      "Composite Manufacturing",
+      "CNC Machining",
+    ],
+    outcome:
+      "Placed 8th nationally at Launch Canada 2025, achieved 16,500 ft apogee, and received the Spirit Bear Award for community impact.",
+    images: ["/placeholder.svg", "/placeholder.svg"],
+  },
+
+
+
+
+
+
+
+
   {
     id: "usst-rocketry",
     title: "Project \"UP\" - USST Rocketry",

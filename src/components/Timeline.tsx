@@ -4,17 +4,9 @@ import { ArrowRight } from "lucide-react";
 
 const timelineItems = [
   {
-    year: "2021",
-    title: "Started at USask",
-    description: "Began Electrical Engineering studies at the University of Saskatchewan.",
-    projects: [
-      { label: "Custom PCB Design", path: "/personal-projects/custom-pcb" },
-    ],
-  },
-  {
     year: "2023",
     title: "FRC Drivetrain Lead",
-    description: "Led drivetrain development and optimization for FRC Team 4627.",
+    description: "Led drivetrain development and optimization for FRC Team 4627 prototyping our first ever swerve drive.",
     projects: [
       { label: "FRC 4627 Manning Robotics - Drivetrain Development", path: "/team-projects/frc-4627-manning" },
     ],
@@ -22,7 +14,7 @@ const timelineItems = [
   {
     year: "2023",
     title: "Provincial Podium",
-    description: "Competed at Skills Alberta with a coordinated multi-robot system.",
+    description: "Competed at Skills Alberta 2023 with a coordinated multi-robot system.",
     projects: [
       { label: "Skills Alberta Robotics Competition 2023", path: "/team-projects/skills-alberta-2023" },
     ],
@@ -30,7 +22,7 @@ const timelineItems = [
   {
     year: "2024",
     title: "NASA Space Apps",
-    description: "Built ExoSpace to visualize open NASA datasets in a 48-hour hackathon.",
+    description: "NASA Space Apps 2024 - My First ever Hackathon where my team built an education platform for exploring exoplanets.",
     projects: [
       { label: "NASA Space Apps Challenge 2024 - ExoSpace", path: "/team-projects/nasa-space-apps-2024" },
       { label: "Home Automation System", path: "/personal-projects/home-automation" },
@@ -38,8 +30,16 @@ const timelineItems = [
   },
   {
     year: "2025",
-    title: "Launch Canada",
-    description: "Led propulsion integration for an M-class high-power rocket campaign.",
+    title: "Launch Canada 2025",
+    description: "Project 'UP' - My first ever Rocket. I Led the propulsion integration for an M-class high-power rocket.",
+    projects: [
+      { label: "Project \"UP\" - USST Rocketry", path: "/team-projects/usst-rocketry" },
+    ],
+  },
+  {
+    year: "2026",
+    title: "Launch Canada 2026",
+    description: "Project 'UP 2: Down' - My second rocket competition. Utilizing learning experiences gained from the first to improve on our past design.",
     projects: [
       { label: "Project \"UP\" - USST Rocketry", path: "/team-projects/usst-rocketry" },
     ],
