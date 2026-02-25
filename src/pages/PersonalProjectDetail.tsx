@@ -35,8 +35,10 @@ const PersonalProjectDetail = () => {
             <div className="glow-border rounded-xl p-5 bg-card/50 flex items-start gap-3">
               <Target className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
               <div>
-                <h3 className="text-sm font-semibold text-primary mb-1">Problem / Goal</h3>
-                <p className="text-sm text-muted-foreground">{project.problemGoal}</p>
+              <h3 className="text-sm font-semibold text-primary mb-2">Problem / Goal</h3>
+                <div className="text-sm text-muted-foreground space-y-3 leading-relaxed">
+                  {project.problemGoal.split('\n\n').map((p, i) => <p key={i}>{p}</p>)}
+                </div>
               </div>
             </div>
 
@@ -44,8 +46,10 @@ const PersonalProjectDetail = () => {
             <div className="glow-border rounded-xl p-5 bg-card/50 flex items-start gap-3">
               <UserCheck className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
               <div>
-                <h3 className="text-sm font-semibold text-secondary mb-1">My Role &amp; Process</h3>
-                <p className="text-sm text-muted-foreground">{project.roleAndProcess}</p>
+              <h3 className="text-sm font-semibold text-secondary mb-2">My Role &amp; Process</h3>
+                <div className="text-sm text-muted-foreground space-y-3 leading-relaxed">
+                  {project.roleAndProcess.split('\n\n').map((p, i) => <p key={i}>{p}</p>)}
+                </div>
               </div>
             </div>
 
@@ -68,8 +72,10 @@ const PersonalProjectDetail = () => {
             <div className="glow-border rounded-xl p-5 bg-card/50 flex items-start gap-3">
               <BarChart3 className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
               <div>
-                <h3 className="text-sm font-semibold text-secondary mb-1">Outcome</h3>
-                <p className="text-sm text-muted-foreground">{project.outcome}</p>
+              <h3 className="text-sm font-semibold text-secondary mb-2">Outcome</h3>
+                <div className="text-sm text-muted-foreground space-y-3 leading-relaxed">
+                  {project.outcome.split('\n\n').map((p, i) => <p key={i}>{p}</p>)}
+                </div>
               </div>
             </div>
           </div>
