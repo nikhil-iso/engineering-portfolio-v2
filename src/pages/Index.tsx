@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail, ChevronDown, Rocket, User, Send, Loader2 } from "lucide-react";
+import { Github, Linkedin, Mail, ChevronDown, Rocket, User, Send, Loader2, MapPin, Download, Briefcase } from "lucide-react";
 import ColorBends from "@/components/ColorBends";
 import TypewriterEffect from "@/components/TypewriterEffect";
 import { Input } from "@/components/ui/input";
@@ -223,7 +223,7 @@ const Index = () => {
             Let's Connect
           </motion.h2>
 
-          <div className="max-w-3xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {/* Contact Form */}
             <motion.form
               onSubmit={handleSubmit}
@@ -240,6 +240,8 @@ const Index = () => {
                 autoComplete="off"
                 style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0, width: 0 }}
               />
+              <h3 className="text-xl font-semibold gradient-text">Send Me a Message</h3>
+              <p className="text-sm text-muted-foreground">Whether you have a project idea, or are reaching out about a job opportunity!</p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
@@ -252,21 +254,73 @@ const Index = () => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" placeholder="notspiderman@oscorp.com" required maxLength={255} disabled={isSubmitting} />
+                <Input id="email" name="email" type="email" placeholder="not.spiderman@example.com" required maxLength={255} disabled={isSubmitting} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="subject">Subject</Label>
-                <Input id="subject" name="subject" placeholder="What's this about?" required maxLength={200} disabled={isSubmitting} />
+                <Input id="subject" name="subject" placeholder="Project Collaboration Opportunity" required maxLength={200} disabled={isSubmitting} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="message">Message</Label>
-                <Textarea id="message" name="message" placeholder="Your message..." required maxLength={1000} rows={4} disabled={isSubmitting} />
+                <Textarea id="message" name="message" placeholder="Tell me about your project or opportunity..." required maxLength={1000} rows={4} disabled={isSubmitting} />
               </div>
               <Button type="submit" className="w-full gap-2" disabled={isSubmitting}>
                 {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                 {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </motion.form>
+
+            {/* Right side - Get In Touch + Open to Opportunities */}
+            <div className="flex flex-col gap-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="glow-border rounded-xl p-8 bg-gradient-to-br from-primary/30 via-secondary/20 to-accent/30 backdrop-blur-sm space-y-6"
+              >
+                <h3 className="text-xl font-semibold gradient-text">Get In Touch</h3>
+                <p className="text-sm text-muted-foreground">Ready to start a conversation? Here are the best ways to reach me.</p>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">Email</p>
+                    <a href="mailto:nikhil.patel@usask.ca" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                      nikhil.patel@usask.ca
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-secondary" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">Location</p>
+                    <p className="text-sm text-muted-foreground">University of Saskatchewan, Saskatoon, SK</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="glow-border rounded-xl p-8 bg-card/50 backdrop-blur-sm space-y-4"
+              >
+                <h3 className="text-lg font-semibold text-foreground">Open to Opportunities</h3>
+                <p className="text-sm text-muted-foreground">
+                  Currently seeking internships, co-op positions, and collaborative projects in Electrical engineering and Mechatronics technology.
+                </p>
+                <a href="/website_resume.pdf" download>
+                  <Button variant="outline" className="w-full gap-2 border-primary/50 hover:bg-primary/10">
+                    <Download className="w-4 h-4" />
+                    Download Resume
+                  </Button>
+                </a>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
