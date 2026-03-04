@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Github, Linkedin, Mail, ChevronDown, Rocket, User, Send } from "lucide-react";
+import { Github, Linkedin, Mail, ChevronDown, Rocket, User, Send, Loader2 } from "lucide-react";
 import ColorBends from "@/components/ColorBends";
 import TypewriterEffect from "@/components/TypewriterEffect";
 import { Input } from "@/components/ui/input";
@@ -8,14 +8,48 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { useState, useRef } from "react";
 
 const Index = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formLoadTime = useRef(Date.now());
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast({ title: "Message sent!", description: "Thanks for reaching out. I'll get back to you soon." });
-    (e.target as HTMLFormElement).reset();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const formEl = e.currentTarget;
+
+    try {
+      const { data, error } = await supabase.functions.invoke("contact-form", {
+        body: {
+          firstName: formData.get("firstName"),
+          lastName: formData.get("lastName"),
+          email: formData.get("email"),
+          subject: formData.get("subject"),
+          message: formData.get("message"),
+          _honeypot: formData.get("_honeypot"),
+          timestamp: formLoadTime.current,
+        },
+      });
+
+      if (error) throw error;
+
+      toast({ title: "Message sent!", description: "Thanks for reaching out. I'll get back to you soon." });
+      formEl.reset();
+      formLoadTime.current = Date.now();
+    } catch (err: any) {
+      toast({
+        title: "Failed to send",
+        description: err?.message || "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -198,30 +232,39 @@ const Index = () => {
               viewport={{ once: true }}
               className="glow-border rounded-xl p-8 bg-card/50 backdrop-blur-sm space-y-5"
             >
+              {/* Honeypot - hidden from real users */}
+              <input
+                type="text"
+                name="_honeypot"
+                tabIndex={-1}
+                autoComplete="off"
+                style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0, width: 0 }}
+              />
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" name="firstName" placeholder="Peter" required maxLength={100} />
+                  <Input id="firstName" name="firstName" placeholder="Peter" required maxLength={100} disabled={isSubmitting} />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" name="lastName" placeholder="Parker" required maxLength={100} />
+                  <Input id="lastName" name="lastName" placeholder="Parker" required maxLength={100} disabled={isSubmitting} />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" placeholder="notspiderman@oscorp.com" required maxLength={255} />
+                <Input id="email" name="email" type="email" placeholder="notspiderman@oscorp.com" required maxLength={255} disabled={isSubmitting} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="subject">Subject</Label>
-                <Input id="subject" name="subject" placeholder="What's this about?" required maxLength={200} />
+                <Input id="subject" name="subject" placeholder="What's this about?" required maxLength={200} disabled={isSubmitting} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="message">Message</Label>
-                <Textarea id="message" name="message" placeholder="Your message..." required maxLength={1000} rows={4} />
+                <Textarea id="message" name="message" placeholder="Your message..." required maxLength={1000} rows={4} disabled={isSubmitting} />
               </div>
-              <Button type="submit" className="w-full gap-2">
-                <Send className="w-4 h-4" /> Send Message
+              <Button type="submit" className="w-full gap-2" disabled={isSubmitting}>
+                {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </motion.form>
           </div>
