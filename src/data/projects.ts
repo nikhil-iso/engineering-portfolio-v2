@@ -64,7 +64,7 @@ export const personalProjects: PersonalProject[] = [
     description:
       "An open-source sunrise alarm clock that gradually increases room brightness to work with natural sleep cycles, featuring Wi-Fi scheduling, smooth easing ramp curves, and full documentation for reproducibility.",
     skills: ["ESP32", "C++", "Python", "Circuit Design", "3D Printing", "Open Source"],
-    span: 2,
+    span: 3,
 
     problemGoal:
       "Standard alarm clocks felt harsh, and commercial sunrise lamps were either closed-source, lacked scheduling/customization, or were too expensive for experimentation.\n\nThe goal was to design a fully open-source sunrise alarm that gradually increases brightness to transition the body toward wakefulness more naturally — including the hardware, firmware, enclosure, and documentation.",
@@ -98,7 +98,7 @@ export const personalProjects: PersonalProject[] = [
     description:
       "An image detection system using the OpenCV library to identify patterns through a webcam and drive motors to target detected objects — inspired by Carbon Robotics' laser weeder for industrial farms.",
     skills: ["Python", "OpenCV", "Computer Vision", "Motor Control", "Embedded Systems"],
-    span: 2,
+    span: 1,
 
     problemGoal:
       "Develop a computer vision platform that can detect specific patterns or objects through a live webcam feed and actuate motors to physically target them. The concept is inspired by Carbon Robotics' laser weeder — an industrial farming tool that identifies weeds and destroys them with a laser. This project aims to replicate that detection-and-targeting pipeline at a smaller scale.",
@@ -119,9 +119,9 @@ export const teamProjects: TeamProject[] = [
 
   {
     id: "usst-rocketry-up2",
-    title: "Project \"UP 2: Down\" - USST Rocketry",
+    title: "Project \"Up 2\" - USST Rocketry",
     objective:
-      "Redesign, modify, and compete with an upgraded and modified \"Project UP\" at Launch Canada 2026 while improving on the previous years shortcomings. ",
+      "Redesign, modify, and compete with an upgraded and improved \"Project UP\" at Launch Canada 2026 while redesigning on the previous years shortcomings. ",
     teamSize: 26,
     myTitle: "Propulsion Lead",
     peopleManaged: 2,
@@ -135,10 +135,10 @@ export const teamProjects: TeamProject[] = [
       "Composite Manufacturing",
       "CNC Machining",
     ],
-    role: "Led propulsion optimization and aft-end subsystem design for competition flight",
+    role: "Led propulsion optimization and aft-end subsystem design for competition flight.",
     span: 3,
     description:
-      "During Janurary of 2026, I was elected President of the USST, where I shifted my focus from entirely technical to take on greater tasks such as project management and team organization. I preformed organizational duties on top of my .",
+      "During Janurary of 2026, I was elected President of the USST, where I shifted my focus from entirely technical to take on greater tasks such as project management and team organization. I preformed organizational duties on top of my technical responsibilities as propulsion lead.",
     competitionResult:
       "8th nationally at Launch Canada 2025, 16,500 ft apogee, Spirit Bear Award for community impact",
     keyContributions: [
@@ -151,14 +151,14 @@ export const teamProjects: TeamProject[] = [
     engineeringFocus: [
       "Aerodynamic drag reduction",
       "Structural load path design",
-      "Motor integration and CG optimization",
+      "Motor integration and CG-COP optimization",
       "Manufacturability and serviceability",
       "System level design tradeoff analysis",
     ],
     problemGoal:
       "Design, manufacture, and compete with an M class high power rocket at Launch Canada 2025 while optimizing propulsion integration and aerodynamic performance.",
     myFocus:
-      "Aerodynamic drag reduction, structural load path design, motor integration and CG optimization, manufacturability, and system-level tradeoff analysis.",
+      "Aerodynamic drag reduction, weight reduction, structural load path design, motor integration and CG optimization, manufacturability, and system-level tradeoff analysis.",
     roleAndProcess:
       "Designed and manufactured a composite aerodynamic boat tail, engineered a threaded external motor retention system, developed an aluminum thrust plate for clean load transfer into the fuselage, and validated key design choices through structural simulation and drag analysis.",
     toolsUsed: [
@@ -347,48 +347,51 @@ export const teamProjects: TeamProject[] = [
     id: "nasa-space-apps-2024",
     title: "NASA Space Apps Challenge 2024 - ExoSpace",
     objective:
-      "Develop a web based platform that visualizes NASA open data to improve accessibility and educational impact within a 48 hour hackathon.",
+      "Develop a platform that to improve accessibility to exoplanet education within a 48 hour hackathon.",
     teamSize: 6,
-    myTitle: "Systems and Product Lead",
+    myTitle: "Product and Systems Lead",
     technologies: [
       "Web Development",
       "NASA Open Data",
+      "Data Visualization",
+      "Accessibility",
+      "Information Architecture",
       "GIS",
-      "Spatial Data Visualization",
-      "Open Source Mapping",
     ],
-    role: "Led system direction and data-to-story mapping for a community-focused geospatial platform",
+    role: "Led product framing and system design for a public facing exoplanet learning experience",
     span: 2,
     description:
-      "Built ExoSpace during the NASA Space Apps Challenge 2024 as a web-based platform for exploring open-source NASA and community datasets through spatial visualization. The team framed the product around a community storytelling map, combining Earth observation data with local contextual layers to surface patterns, trends, and anomalies in a form accessible to non-experts.",
+      "Built ExoSpace during the NASA Space Apps Challenge 2024 as a web-based platform for exploring open-source NASA and community datasets through spatial visualization. The team framed the product around exoplanet education, providing an interactive way to explore and understand exoplanetary systems.",
     keyContributions: [
-      "Defined the community mapping problem and system narrative for the hackathon scope",
-      "Structured open-source spatial datasets into a map-first exploration workflow",
-      "Coordinated rapid feature tradeoffs to deliver a working demo in 48 hours",
-      "Integrated science-backed geospatial context to improve educational usability",
+      "Defined the core learning goals and user journey for a 48 hour demo",
+      "Curated NASA open datasets into a small, explorable attribute set",
+      "Outlined a map first navigation flow with filters and explainer panels",
+      "Coordinated scope cuts and task planning to ship on time",
+      "Wrote plain language explanations to reduce scientific jargon",
     ],
     engineeringFocus: [
-      "Spatial data storytelling",
-      "Open-data integration",
-      "Rapid product prototyping",
-      "Map-based user experience design",
-      "Time-boxed system tradeoff decisions",
+      "Educational UX and clarity",
+      "Open data modeling and curation",
+      "Rapid prototyping under time constraints",
+      "Map based storytelling",
+      "Accessibility first content structure",
     ],
     problemGoal:
-      "Develop a web based platform that visualizes NASA open data to improve accessibility and educational impact within a 48 hour hackathon.",
+      "Make exoplanet education approachable by turning NASA open data into a guided, explorable experience that non experts can understand within a 48 hour build window.",
     myFocus:
-      "System-level product framing, open-data integration strategy, and map-based storytelling to connect physical geography with community issues.",
+      "Product framing, dataset selection, and interaction design that turned raw data into an understandable learning flow.",
     roleAndProcess:
-      "Worked with a six-person team to define scope, identify relevant open datasets, and build a map-centric experience that layered Earth observation and community context. Prioritized rapid iteration and clear visual communication to ship a complete demo within hackathon constraints.",
+      "Facilitated rapid scoping sessions, turned the objective into an MVP checklist, and helped the team sequence work around data ingestion, visualization, and content. Reviewed progress frequently to keep features aligned with the learning goals and ensured the demo flow remained clear for first time users.",
     toolsUsed: [
-      "Web Development",
-      "NASA Open Data",
-      "GIS",
-      "Spatial Data Visualization",
+      "JavaScript",
+      "HTML/CSS",
+      "NASA Exoplanet Archive",
       "Open Source Mapping",
+      "Data Visualization",
+      "GitHub",
     ],
     outcome:
-      "Delivered a complete 48-hour hackathon prototype that made NASA open data more accessible through an interactive community map narrative.",
+      "Delivered a working 48 hour prototype with interactive exploration, filterable attributes, and plain language explainers that made exoplanet concepts more accessible to first time learners.",
     images: ["/images/nasaExoplanet.jpg"],
   },
 ];
