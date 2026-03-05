@@ -1,8 +1,28 @@
 import { motion } from "framer-motion";
 import ProjectCard from "@/components/ProjectCard";
+import ResizableProjectGrid from "@/components/ResizableProjectGrid";
 import { teamProjects } from "@/data/projects";
 
 const TeamProjects = () => {
+  const gridItems = teamProjects.map((project) => ({
+    id: project.id,
+    defaultColSpan: project.span ?? 1,
+    node: (
+      <ProjectCard
+        id={project.id}
+        title={project.title}
+        subtitle={project.objective}
+        tags={project.technologies}
+        type="team"
+        span={project.span}
+        myTitle={project.myTitle}
+        teamSize={project.teamSize}
+        peopleManaged={project.peopleManaged}
+        role={project.role}
+      />
+    ),
+  }));
+
   return (
     <div className="min-h-screen bg-background star-field pt-24 pb-16">
       <div className="max-w-6xl mx-auto px-6">
@@ -15,36 +35,7 @@ const TeamProjects = () => {
           <p className="text-muted-foreground">Collaborative engineering work</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {teamProjects.map((project, i) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05 }}
-              className={
-                project.span === 3
-                  ? "col-span-1 md:col-span-2 lg:col-span-3"
-                  : project.span === 2
-                  ? "col-span-1 md:col-span-2"
-                  : "col-span-1"
-              }
-            >
-              <ProjectCard
-                id={project.id}
-                title={project.title}
-                subtitle={project.objective}
-                tags={project.technologies}
-                type="team"
-                span={project.span}
-                myTitle={project.myTitle}
-                teamSize={project.teamSize}
-                peopleManaged={project.peopleManaged}
-                role={project.role}
-              />
-            </motion.div>
-          ))}
-        </div>
+        <ResizableProjectGrid storageKey="team-projects-layout" items={gridItems} />
       </div>
     </div>
   );

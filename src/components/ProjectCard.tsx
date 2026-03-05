@@ -21,7 +21,7 @@ const ProjectCard = ({ id, title, subtitle, tags, type, span = 1, myTitle, teamS
   const isTeam = type === "team";
 
   return (
-    <div>
+    <div className="h-full">
       <Link to={`/${type}-projects/${id}`}>
         <motion.div
           whileHover={{ y: -4, scale: 1.01 }}
