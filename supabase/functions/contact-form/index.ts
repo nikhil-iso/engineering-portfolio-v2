@@ -6,6 +6,12 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+}
+
 // Simple in-memory rate limiter (per function instance)
 const rateLimitMap = new Map<string, number[]>();
 const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
@@ -118,18 +124,18 @@ Deno.serve(async (req) => {
             },
             body: JSON.stringify({
               to: [notificationEmail],
-              subject: `New Contact: ${subject.trim()}`,
+              subject: `New Contact: ${escapeHtml(subject.trim())}`,
               html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
                   <h2 style="color: #333; border-bottom: 2px solid #6366f1; padding-bottom: 10px;">New Contact Form Submission</h2>
                   <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
-                    <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Name:</td><td style="padding: 8px 0;">${firstName.trim()} ${lastName.trim()}</td></tr>
-                    <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Email:</td><td style="padding: 8px 0;"><a href="mailto:${email.trim()}">${email.trim()}</a></td></tr>
-                    <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Subject:</td><td style="padding: 8px 0;">${subject.trim()}</td></tr>
+                    <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Name:</td><td style="padding: 8px 0;">${escapeHtml(firstName.trim())} ${escapeHtml(lastName.trim())}</td></tr>
+                    <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Email:</td><td style="padding: 8px 0;"><a href="mailto:${escapeHtml(email.trim())}">${escapeHtml(email.trim())}</a></td></tr>
+                    <tr><td style="padding: 8px 0; font-weight: bold; color: #555;">Subject:</td><td style="padding: 8px 0;">${escapeHtml(subject.trim())}</td></tr>
                   </table>
                   <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
                     <strong style="color: #555;">Message:</strong>
-                    <p style="margin-top: 8px; color: #333; line-height: 1.6;">${message.trim().replace(/\n/g, "<br>")}</p>
+                    <p style="margin-top: 8px; color: #333; line-height: 1.6;">${escapeHtml(message.trim()).replace(/\n/g, "<br>")}</p>
                   </div>
                 </div>
               `,
