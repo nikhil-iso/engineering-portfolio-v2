@@ -97,7 +97,7 @@ Deno.serve(async (req) => {
     });
 
     if (dbError) {
-      console.error("DB error:", dbError);
+      console.error("Contact form DB insert failed", { code: dbError.code });
       return new Response(
         JSON.stringify({ error: "Failed to save submission." }),
         { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
