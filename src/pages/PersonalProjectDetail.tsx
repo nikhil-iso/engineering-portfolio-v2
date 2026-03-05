@@ -1,12 +1,15 @@
 import { useParams, Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Target, UserCheck, Wrench, BarChart3, ImageIcon } from "lucide-react";
 import { personalProjects } from "@/data/projects";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import ImageLightbox from "@/components/ImageLightbox";
 
 const PersonalProjectDetail = () => {
   const { id } = useParams();
   const project = personalProjects.find((p) => p.id === id);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   if (!project) {
     return (
@@ -89,15 +92,35 @@ const PersonalProjectDetail = () => {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {project.images.map((src, i) => (
-                  <div key={i} className="glow-border rounded-xl overflow-hidden bg-card/50">
+                  <div
+                    key={i}
+                    className="glow-border rounded-xl overflow-hidden bg-card/50 cursor-pointer group"
+                    onClick={() => setLightboxIndex(i)}
+                  >
                     <AspectRatio ratio={16 / 9}>
-                      <img src={src} alt={`${project.title} image ${i + 1}`} className="w-full h-full object-cover" />
+                      <img
+                        src={src}
+                        alt={`${project.title} image ${i + 1}`}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
                     </AspectRatio>
                   </div>
                 ))}
               </div>
             </div>
           )}
+
+          {/* Lightbox */}
+          <AnimatePresence>
+            {lightboxIndex !== null && project.images && (
+              <ImageLightbox
+                images={project.images}
+                initialIndex={lightboxIndex}
+                alt={project.title}
+                onClose={() => setLightboxIndex(null)}
+              />
+            )}
+          </AnimatePresence>
 
           {/* Skills */}
           <div className="mt-8">
