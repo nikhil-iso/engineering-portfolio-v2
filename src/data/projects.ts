@@ -73,7 +73,7 @@ export const personalProjects: PersonalProject[] = [
     toolsUsed: ["ESP32", "C++", "Python", "DS3231 RTC", "MOSFET Switching", "KiCad", "Fusion 360", "JSON", "GitHub"],
     outcome:
       "Lamp ramps from off to full brightness with no perceptible stepping. Schedule execution remains consistent even without network (RTC fallback).\n\nPWM tuned to minimize visible flicker, mid-80% efficiency range depending on load.\n\nRan a small user trial (~6 users) with qualitative feedback pointing to reduced grogginess compared to traditional alarms, guiding default ramp curve selection.",
-    images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+    images: ["/images/SimuLight Wide Banner Website.png", "/images/SimuLightPCB.png", "/images/SimuLightPCB3D.png", "/images/Sunrise Alarm Breadboard image.jpg"],
   },
   {
     id: "arduino-macropad",
@@ -90,7 +90,7 @@ export const personalProjects: PersonalProject[] = [
     toolsUsed: ["Arduino Micro", "C++", "USB HID", "Cherry MX Switches", "Fusion 360", "3D Printing", "GitHub"],
     outcome:
       "Plug-and-play USB HID operation on Windows, macOS, and Linux with no drivers required. Sub-5 ms debounce variance for responsive input.\n\nAssembly time under 30 minutes per unit. Open-source release resulted in early community engagement validating the project's relevance and extensibility.",
-    images: ["/placeholder.svg", "/placeholder.svg"],
+    images: ["/images/MacroKeyboard Banner Website.png", "/images/Macropad V2 (WIP) v10.png"],
   },
   {
     id: "opencv-detection-platform",
@@ -173,7 +173,7 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Placed 8th nationally at Launch Canada 2025, achieved 16,500 ft apogee, and received the Spirit Bear Award for community impact.",
-    images: ["/placeholder.svg", "/placeholder.svg"],
+    images: ["/images/USST Logo 1.png"],
   },
 
 
@@ -239,7 +239,7 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Placed 8th nationally at Launch Canada 2025, achieved 16,500 ft apogee, and received the Spirit Bear Award for community impact.",
-    images: ["/placeholder.svg", "/placeholder.svg"],
+    images: ["/images/Project Up Banner.png", "/images/Project Up Lower Section.png"],
   },
   {
     id: "frc-4627-manning",
@@ -292,7 +292,7 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Delivered competition-ready drivetrain systems for the 2023 FRC season, including a validated 8:1 tank setup and a successful first swerve prototype.",
-    images: ["/placeholder.svg", "/placeholder.svg"],
+    images: ["/images/4627Thor.png", "/images/4627logo.png"],
   },
   {
     id: "skills-alberta-2023",
@@ -341,7 +341,7 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Placed 3rd at the provincial level with a coordinated shooter-collector architecture that improved scoring throughput.",
-    images: ["/placeholder.svg", "/placeholder.svg"],
+    images: ["/images/skillsbot.JPG"],
   },
   {
     id: "nasa-space-apps-2024",
@@ -389,6 +389,6 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Delivered a complete 48-hour hackathon prototype that made NASA open data more accessible through an interactive community map narrative.",
-    images: ["/placeholder.svg", "/placeholder.svg"],
+    images: ["/images/nasaExoplanet.jpg"],
   },
 ];
