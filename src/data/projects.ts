@@ -292,7 +292,7 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Delivered competition-ready drivetrain systems for the 2023 FRC season, including a validated 8:1 tank setup and a successful first swerve prototype.",
-    images: ["/placeholder.svg", "/placeholder.svg"],
+    images: ["/images/4627Thor.png", "/images/4627logo.png"],
   },
   {
     id: "skills-alberta-2023",
