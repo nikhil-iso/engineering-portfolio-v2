@@ -73,7 +73,7 @@ export const personalProjects: PersonalProject[] = [
     toolsUsed: ["ESP32", "C++", "Python", "DS3231 RTC", "MOSFET Switching", "KiCad", "Fusion 360", "JSON", "GitHub"],
     outcome:
       "Lamp ramps from off to full brightness with no perceptible stepping. Schedule execution remains consistent even without network (RTC fallback).\n\nPWM tuned to minimize visible flicker, mid-80% efficiency range depending on load.\n\nRan a small user trial (~6 users) with qualitative feedback pointing to reduced grogginess compared to traditional alarms, guiding default ramp curve selection.",
-    images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
+    images: ["/images/SimuLight Wide Banner Website.png", "/images/SimuLightPCB.png", "/images/SimuLightPCB3D.png", "/images/Sunrise Alarm Breadboard image.jpg"],
   },
   {
     id: "arduino-macropad",
