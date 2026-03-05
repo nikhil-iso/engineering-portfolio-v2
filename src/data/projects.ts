@@ -341,7 +341,7 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Placed 3rd at the provincial level with a coordinated shooter-collector architecture that improved scoring throughput.",
-    images: ["/placeholder.svg", "/placeholder.svg"],
+    images: ["/images/skillsbot.JPG"],
   },
   {
     id: "nasa-space-apps-2024",
