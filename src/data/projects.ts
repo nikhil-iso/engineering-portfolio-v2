@@ -173,7 +173,7 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Placed 8th nationally at Launch Canada 2025, achieved 16,500 ft apogee, and received the Spirit Bear Award for community impact.",
-    images: ["/placeholder.svg", "/placeholder.svg"],
+    images: ["/images/USST Logo 1.png"],
   },
 
 
