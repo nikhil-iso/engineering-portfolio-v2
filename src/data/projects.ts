@@ -389,6 +389,6 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Delivered a complete 48-hour hackathon prototype that made NASA open data more accessible through an interactive community map narrative.",
-    images: ["/placeholder.svg", "/placeholder.svg"],
+    images: ["/images/nasaExoplanet.jpg"],
   },
 ];
