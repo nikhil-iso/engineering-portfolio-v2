@@ -90,7 +90,7 @@ export const personalProjects: PersonalProject[] = [
     toolsUsed: ["Arduino Micro", "C++", "USB HID", "Cherry MX Switches", "Fusion 360", "3D Printing", "GitHub"],
     outcome:
       "Plug-and-play USB HID operation on Windows, macOS, and Linux with no drivers required. Sub-5 ms debounce variance for responsive input.\n\nAssembly time under 30 minutes per unit. Open-source release resulted in early community engagement validating the project's relevance and extensibility.",
-    images: ["/placeholder.svg", "/placeholder.svg"],
+    images: ["/images/MacroKeyboard Banner Website.png", "/images/Macropad V2 (WIP) v10.png"],
   },
   {
     id: "opencv-detection-platform",
