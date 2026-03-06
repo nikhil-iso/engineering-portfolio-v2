@@ -15,7 +15,6 @@ interface ResizableProjectGridProps {
 }
 
 const COLS = 3;
-const ROW_BASE_PX = 260; // base height of 1 row-span unit
 const GAP = 24;
 const MIN_SPAN = 1;
 const MAX_COL_SPAN = 3;
