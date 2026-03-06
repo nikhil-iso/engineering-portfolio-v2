@@ -87,9 +87,9 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
       if (!adminPassword) return;
       if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
       saveTimeoutRef.current = setTimeout(async () => {
-        const { error } = await supabase.rpc("save_grid_layout", {
+        const { error } = await supabase.rpc("save_grid_layout" as any, {
           _id: storageKey,
-          _layout: newLayout as unknown as Record<string, unknown>,
+          _layout: JSON.parse(JSON.stringify(newLayout)),
           _admin_password: adminPassword,
         });
         if (error) {
