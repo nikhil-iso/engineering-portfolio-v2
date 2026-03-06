@@ -70,7 +70,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      save_grid_layout: {
+        Args: { _admin_password: string; _id: string; _layout: Json }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
