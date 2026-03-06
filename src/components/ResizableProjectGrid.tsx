@@ -103,7 +103,7 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
 
   // Verify admin password
   const handlePasswordSubmit = async () => {
-    const { data, error } = await supabase.rpc("verify_admin_password", {
+    const { data, error } = await supabase.rpc("verify_admin_password" as any, {
       _password: password,
     });
     if (error || !data) {
