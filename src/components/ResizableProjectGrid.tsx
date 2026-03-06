@@ -1,6 +1,8 @@
 import { useState, useCallback, useRef, useEffect, ReactNode } from "react";
 import { motion } from "framer-motion";
-import { GripVertical, Lock, Unlock, RotateCcw } from "lucide-react";
+import { GripVertical, Lock, Unlock, RotateCcw, KeyRound } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 // ── Types ────────────────────────────────────────────────────
 interface GridItemLayout {
@@ -19,19 +21,6 @@ const MIN_SPAN = 1;
 const MAX_COL_SPAN = 3;
 
 // ── Helpers ──────────────────────────────────────────────────
-function loadLayout(key: string): GridItemLayout[] | null {
-  try {
-    const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : null;
-  } catch {
-    return null;
-  }
-}
-
-function saveLayout(key: string, layout: GridItemLayout[]) {
-  localStorage.setItem(key, JSON.stringify(layout));
-}
-
 function buildDefaultLayout(items: ResizableProjectGridProps["items"]): GridItemLayout[] {
   return items.map((item) => ({
     id: item.id,
@@ -39,7 +28,7 @@ function buildDefaultLayout(items: ResizableProjectGridProps["items"]): GridItem
   }));
 }
 
-function buildInitialLayout(
+function mergeWithSaved(
   items: ResizableProjectGridProps["items"],
   saved: GridItemLayout[] | null
 ): GridItemLayout[] {
@@ -55,42 +44,87 @@ function buildInitialLayout(
 
 // ── Component ────────────────────────────────────────────────
 const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) => {
-  const saved = useRef(loadLayout(storageKey));
-  const [layout, setLayout] = useState<GridItemLayout[]>(() =>
-    buildInitialLayout(items, saved.current)
-  );
+  const [layout, setLayout] = useState<GridItemLayout[]>(() => buildDefaultLayout(items));
   const [locked, setLocked] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
+  const [password, setPassword] = useState("");
+  const [adminPassword, setAdminPassword] = useState<string | null>(null);
   const [dragOverId, setDragOverId] = useState<string | null>(null);
   const [dragSourceId, setDragSourceId] = useState<string | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
+  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Check admin mode via URL param ?admin=true
-  const [isAdmin] = useState(() => {
-    try {
-      return new URLSearchParams(window.location.search).get("admin") === "true";
-    } catch {
-      return false;
-    }
-  });
-
-  // Persist on change
+  // Load layout from database on mount
   useEffect(() => {
-    saveLayout(storageKey, layout);
-  }, [layout, storageKey]);
+    const loadFromDb = async () => {
+      const { data } = await supabase
+        .from("grid_layouts")
+        .select("layout")
+        .eq("id", storageKey)
+        .maybeSingle();
 
-  // Sync if items list changes
-  useEffect(() => {
-    setLayout((prev) => buildInitialLayout(items, prev));
+      if (data?.layout) {
+        setLayout(mergeWithSaved(items, data.layout as unknown as GridItemLayout[]));
+      }
+    };
+    loadFromDb();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items.length]);
+  }, [storageKey]);
+
+  // Check URL param for admin prompt
+  useEffect(() => {
+    try {
+      if (new URLSearchParams(window.location.search).get("admin") === "true" && !isAdmin) {
+        setShowPasswordPrompt(true);
+      }
+    } catch { /* ignore */ }
+  }, [isAdmin]);
+
+  // Debounced save to database
+  const saveToDb = useCallback(
+    (newLayout: GridItemLayout[]) => {
+      if (!adminPassword) return;
+      if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+      saveTimeoutRef.current = setTimeout(async () => {
+        const { error } = await supabase.rpc("save_grid_layout", {
+          _id: storageKey,
+          _layout: newLayout as unknown as Record<string, unknown>,
+          _admin_password: adminPassword,
+        });
+        if (error) {
+          console.error("Failed to save layout:", error);
+          toast.error("Failed to save layout");
+        }
+      }, 800);
+    },
+    [adminPassword, storageKey]
+  );
+
+  // Verify admin password
+  const handlePasswordSubmit = async () => {
+    const { data, error } = await supabase.rpc("verify_admin_password", {
+      _password: password,
+    });
+    if (error || !data) {
+      toast.error("Incorrect password");
+      return;
+    }
+    setAdminPassword(password);
+    setIsAdmin(true);
+    setShowPasswordPrompt(false);
+    setPassword("");
+    toast.success("Admin mode enabled");
+  };
 
   const resetLayout = useCallback(() => {
     const defaults = buildDefaultLayout(items);
     setLayout(defaults);
-    localStorage.removeItem(storageKey);
-  }, [items, storageKey]);
+    saveToDb(defaults);
+    toast.success("Layout reset to defaults");
+  }, [items, saveToDb]);
 
-  // ── Resize handler (pointer-based, column only) ────────────
+  // ── Resize handler (column only) ────────────────────────────
   const startResize = useCallback(
     (id: string, e: React.PointerEvent) => {
       if (locked) return;
@@ -113,26 +147,32 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
 
       const onMove = (me: PointerEvent) => {
         const dx = me.clientX - startX;
-        setLayout((prev) =>
-          prev.map((l) => {
+        setLayout((prev) => {
+          const next = prev.map((l) => {
             if (l.id !== id) return l;
             const newWidth = startRect.width + dx;
             let newCol = Math.round(newWidth / (colWidth + GAP));
             newCol = Math.max(MIN_SPAN, Math.min(MAX_COL_SPAN, newCol));
             return { ...l, colSpan: newCol };
-          })
-        );
+          });
+          return next;
+        });
       };
 
       const onUp = () => {
         window.removeEventListener("pointermove", onMove);
         window.removeEventListener("pointerup", onUp);
+        // Save after resize ends
+        setLayout((current) => {
+          saveToDb(current);
+          return current;
+        });
       };
 
       window.addEventListener("pointermove", onMove);
       window.addEventListener("pointerup", onUp);
     },
-    [layout, locked]
+    [layout, locked, saveToDb]
   );
 
   // ── Drag-to-reorder handlers ──────────────────────────────
@@ -167,20 +207,59 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
         if (srcIdx === -1 || tgtIdx === -1) return prev;
         const [moved] = ordered.splice(srcIdx, 1);
         ordered.splice(tgtIdx, 0, moved);
+        saveToDb(ordered);
         return ordered;
       });
       setDragOverId(null);
       setDragSourceId(null);
     },
-    [dragSourceId, locked]
+    [dragSourceId, locked, saveToDb]
   );
 
-  // Map items by id for lookup
   const itemMap = new Map(items.map((item) => [item.id, item]));
 
   return (
     <div>
-      {/* Admin controls — only visible with ?admin=true */}
+      {/* Password prompt modal */}
+      {showPasswordPrompt && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <div className="bg-card border border-border rounded-xl p-6 w-full max-w-sm mx-4 shadow-2xl">
+            <div className="flex items-center gap-2 mb-4">
+              <KeyRound className="w-5 h-5 text-primary" />
+              <h3 className="text-lg font-semibold text-foreground">Admin Access</h3>
+            </div>
+            <p className="text-sm text-muted-foreground mb-4">Enter password to edit layouts.</p>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handlePasswordSubmit()}
+              className="w-full px-3 py-2 rounded-lg bg-background border border-border text-foreground text-sm mb-4 focus:outline-none focus:ring-2 focus:ring-primary/50"
+              placeholder="Password"
+              autoFocus
+            />
+            <div className="flex gap-2">
+              <button
+                onClick={() => {
+                  setShowPasswordPrompt(false);
+                  setPassword("");
+                }}
+                className="flex-1 px-3 py-2 text-sm rounded-lg border border-border text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handlePasswordSubmit}
+                className="flex-1 px-3 py-2 text-sm rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+              >
+                Unlock
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Admin controls — only visible when authenticated */}
       {isAdmin && (
         <div className="flex justify-end gap-2 mb-4">
           <button
@@ -236,7 +315,6 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
                 gridColumn: `span ${entry.colSpan}`,
               }}
             >
-              {/* Card content — fills the cell */}
               <div
                 className={`h-full w-full transition-all duration-200 ${
                   isDropTarget ? "ring-2 ring-primary/60 ring-offset-2 ring-offset-background rounded-xl" : ""
@@ -245,15 +323,12 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
                 {item.node}
               </div>
 
-              {/* ── Resize handle (right edge, only when unlocked) ─── */}
               {!locked && (
                 <>
-                  {/* Drag grip */}
                   <div className="absolute top-2 left-2 z-20 p-1 rounded bg-card/80 border border-border/60 opacity-0 group-hover:opacity-100 transition-opacity cursor-grab">
                     <GripVertical className="w-4 h-4 text-muted-foreground" />
                   </div>
 
-                  {/* Right edge resize */}
                   <div
                     className="absolute top-0 right-0 w-3 h-full cursor-col-resize z-20 group/handle flex items-center justify-center"
                     onPointerDown={(e) => startResize(entry.id, e)}
@@ -261,7 +336,6 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
                     <div className="w-1 h-12 rounded-full bg-primary/0 group-hover/handle:bg-primary/60 transition-colors" />
                   </div>
 
-                  {/* Size indicator */}
                   <div className="absolute top-2 right-2 z-20 text-[10px] font-mono text-muted-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity bg-card/80 px-1.5 py-0.5 rounded border border-border/40">
                     {entry.colSpan}w
                   </div>
