@@ -1,12 +1,11 @@
 import { useState, useCallback, useRef, useEffect, ReactNode } from "react";
 import { motion } from "framer-motion";
-import { GripVertical, Lock, Unlock } from "lucide-react";
+import { GripVertical, Lock, Unlock, RotateCcw } from "lucide-react";
 
 // ── Types ────────────────────────────────────────────────────
 interface GridItemLayout {
   id: string;
   colSpan: number; // 1–3
-  rowSpan: number; // 1–3
 }
 
 interface ResizableProjectGridProps {
@@ -15,11 +14,9 @@ interface ResizableProjectGridProps {
 }
 
 const COLS = 3;
-const ROW_BASE_PX = 260; // base height of 1 row-span unit
 const GAP = 24;
 const MIN_SPAN = 1;
 const MAX_COL_SPAN = 3;
-const MAX_ROW_SPAN = 3;
 
 // ── Helpers ──────────────────────────────────────────────────
 function loadLayout(key: string): GridItemLayout[] | null {
@@ -35,16 +32,23 @@ function saveLayout(key: string, layout: GridItemLayout[]) {
   localStorage.setItem(key, JSON.stringify(layout));
 }
 
+function buildDefaultLayout(items: ResizableProjectGridProps["items"]): GridItemLayout[] {
+  return items.map((item) => ({
+    id: item.id,
+    colSpan: Math.min(item.defaultColSpan ?? 1, MAX_COL_SPAN),
+  }));
+}
+
 function buildInitialLayout(
   items: ResizableProjectGridProps["items"],
   saved: GridItemLayout[] | null
 ): GridItemLayout[] {
+  if (!saved) return buildDefaultLayout(items);
   return items.map((item) => {
-    const existing = saved?.find((s) => s.id === item.id);
+    const existing = saved.find((s) => s.id === item.id);
     return {
       id: item.id,
       colSpan: existing?.colSpan ?? Math.min(item.defaultColSpan ?? 1, MAX_COL_SPAN),
-      rowSpan: existing?.rowSpan ?? 1,
     };
   });
 }
@@ -60,6 +64,15 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
   const [dragSourceId, setDragSourceId] = useState<string | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
+  // Check admin mode via URL param ?admin=true
+  const [isAdmin] = useState(() => {
+    try {
+      return new URLSearchParams(window.location.search).get("admin") === "true";
+    } catch {
+      return false;
+    }
+  });
+
   // Persist on change
   useEffect(() => {
     saveLayout(storageKey, layout);
@@ -71,9 +84,15 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items.length]);
 
-  // ── Resize handler (pointer-based) ─────────────────────────
+  const resetLayout = useCallback(() => {
+    const defaults = buildDefaultLayout(items);
+    setLayout(defaults);
+    localStorage.removeItem(storageKey);
+  }, [items, storageKey]);
+
+  // ── Resize handler (pointer-based, column only) ────────────
   const startResize = useCallback(
-    (id: string, direction: "col" | "row" | "both", e: React.PointerEvent) => {
+    (id: string, e: React.PointerEvent) => {
       if (locked) return;
       e.preventDefault();
       e.stopPropagation();
@@ -85,37 +104,22 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
       if (!cardEl) return;
 
       const startX = e.clientX;
-      const startY = e.clientY;
       const startRect = cardEl.getBoundingClientRect();
       const entry = layout.find((l) => l.id === id)!;
       const startColSpan = entry.colSpan;
-      const startRowSpan = entry.rowSpan;
 
-      // Compute column width from grid
       const gridRect = gridEl.getBoundingClientRect();
       const colWidth = (gridRect.width - GAP * (COLS - 1)) / COLS;
 
       const onMove = (me: PointerEvent) => {
         const dx = me.clientX - startX;
-        const dy = me.clientY - startY;
-
         setLayout((prev) =>
           prev.map((l) => {
             if (l.id !== id) return l;
-            let newCol = startColSpan;
-            let newRow = startRowSpan;
-
-            if (direction === "col" || direction === "both") {
-              const newWidth = startRect.width + dx;
-              newCol = Math.round(newWidth / (colWidth + GAP));
-              newCol = Math.max(MIN_SPAN, Math.min(MAX_COL_SPAN, newCol));
-            }
-            if (direction === "row" || direction === "both") {
-              const newHeight = startRect.height + dy;
-              newRow = Math.round(newHeight / (ROW_BASE_PX + GAP));
-              newRow = Math.max(MIN_SPAN, Math.min(MAX_ROW_SPAN, newRow));
-            }
-            return { ...l, colSpan: newCol, rowSpan: newRow };
+            const newWidth = startRect.width + dx;
+            let newCol = Math.round(newWidth / (colWidth + GAP));
+            newCol = Math.max(MIN_SPAN, Math.min(MAX_COL_SPAN, newCol));
+            return { ...l, colSpan: newCol };
           })
         );
       };
@@ -176,27 +180,36 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
 
   return (
     <div>
-      {/* Lock toggle */}
-      <div className="flex justify-end mb-4">
-        <button
-          onClick={() => setLocked((l) => !l)}
-          className={`flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-lg border transition-all duration-200 ${
-            locked
-              ? "border-border text-muted-foreground hover:text-foreground hover:border-primary/40"
-              : "border-primary/60 text-primary bg-primary/10"
-          }`}
-        >
-          {locked ? <Lock className="w-3.5 h-3.5" /> : <Unlock className="w-3.5 h-3.5" />}
-          {locked ? "Unlock Layout" : "Editing Layout"}
-        </button>
-      </div>
+      {/* Admin controls — only visible with ?admin=true */}
+      {isAdmin && (
+        <div className="flex justify-end gap-2 mb-4">
+          <button
+            onClick={resetLayout}
+            className="flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-destructive/40 transition-all duration-200"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            Reset Layout
+          </button>
+          <button
+            onClick={() => setLocked((l) => !l)}
+            className={`flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-lg border transition-all duration-200 ${
+              locked
+                ? "border-border text-muted-foreground hover:text-foreground hover:border-primary/40"
+                : "border-primary/60 text-primary bg-primary/10"
+            }`}
+          >
+            {locked ? <Lock className="w-3.5 h-3.5" /> : <Unlock className="w-3.5 h-3.5" />}
+            {locked ? "Unlock Layout" : "Editing Layout"}
+          </button>
+        </div>
+      )}
 
       <div
         ref={gridRef}
         className="grid gap-6"
         style={{
           gridTemplateColumns: `repeat(${COLS}, 1fr)`,
-          gridAutoRows: `${ROW_BASE_PX}px`,
+          gridAutoRows: "auto",
         }}
       >
         {layout.map((entry) => {
@@ -221,7 +234,6 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
               className="relative group"
               style={{
                 gridColumn: `span ${entry.colSpan}`,
-                gridRow: `span ${entry.rowSpan}`,
               }}
             >
               {/* Card content — fills the cell */}
@@ -233,7 +245,7 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
                 {item.node}
               </div>
 
-              {/* ── Resize handles (only when unlocked) ─── */}
+              {/* ── Resize handle (right edge, only when unlocked) ─── */}
               {!locked && (
                 <>
                   {/* Drag grip */}
@@ -241,33 +253,17 @@ const ResizableProjectGrid = ({ storageKey, items }: ResizableProjectGridProps) 
                     <GripVertical className="w-4 h-4 text-muted-foreground" />
                   </div>
 
-                  {/* Right edge */}
+                  {/* Right edge resize */}
                   <div
                     className="absolute top-0 right-0 w-3 h-full cursor-col-resize z-20 group/handle flex items-center justify-center"
-                    onPointerDown={(e) => startResize(entry.id, "col", e)}
+                    onPointerDown={(e) => startResize(entry.id, e)}
                   >
                     <div className="w-1 h-12 rounded-full bg-primary/0 group-hover/handle:bg-primary/60 transition-colors" />
                   </div>
 
-                  {/* Bottom edge */}
-                  <div
-                    className="absolute bottom-0 left-0 h-3 w-full cursor-row-resize z-20 group/handle flex items-center justify-center"
-                    onPointerDown={(e) => startResize(entry.id, "row", e)}
-                  >
-                    <div className="h-1 w-12 rounded-full bg-primary/0 group-hover/handle:bg-primary/60 transition-colors" />
-                  </div>
-
-                  {/* Corner handle */}
-                  <div
-                    className="absolute bottom-0 right-0 w-5 h-5 cursor-nwse-resize z-30 group/handle flex items-end justify-end"
-                    onPointerDown={(e) => startResize(entry.id, "both", e)}
-                  >
-                    <div className="w-3 h-3 rounded-sm border-r-2 border-b-2 border-primary/0 group-hover/handle:border-primary/60 transition-colors mb-0.5 mr-0.5" />
-                  </div>
-
                   {/* Size indicator */}
                   <div className="absolute top-2 right-2 z-20 text-[10px] font-mono text-muted-foreground/60 opacity-0 group-hover:opacity-100 transition-opacity bg-card/80 px-1.5 py-0.5 rounded border border-border/40">
-                    {entry.colSpan}×{entry.rowSpan}
+                    {entry.colSpan}w
                   </div>
                 </>
               )}
