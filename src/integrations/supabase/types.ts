@@ -47,6 +47,24 @@ export type Database = {
         }
         Relationships: []
       }
+      grid_layouts: {
+        Row: {
+          id: string
+          layout: Json
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          layout?: Json
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          layout?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
