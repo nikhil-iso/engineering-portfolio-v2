@@ -1,4 +1,4 @@
-import { ReactNode } from "motion/react";
+import { ReactNode } from "react";
 import { motion } from "framer-motion";
 
 interface ProjectGridProps {
