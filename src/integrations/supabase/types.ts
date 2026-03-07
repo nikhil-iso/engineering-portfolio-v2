@@ -89,10 +89,6 @@ export type Database = {
         Args: { _admin_password: string; _id: string; _layout: Json }
         Returns: boolean
       }
-      update_admin_password_from_secret: {
-        Args: { _new_password: string }
-        Returns: undefined
-      }
       verify_admin_password: { Args: { _password: string }; Returns: boolean }
     }
     Enums: {
