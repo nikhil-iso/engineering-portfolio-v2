@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import ProjectCard from "@/components/ProjectCard";
-import ResizableProjectGrid from "@/components/ResizableProjectGrid";
+import ProjectGrid from "@/components/ProjectGrid";
 import { teamProjects } from "@/data/projects";
 
 const TeamProjects = () => {
   const gridItems = teamProjects.map((project) => ({
     id: project.id,
-    defaultColSpan: project.span ?? 1,
+    colSpan: project.span ?? 1,
     node: (
       <ProjectCard
         id={project.id}
@@ -36,7 +36,7 @@ const TeamProjects = () => {
           <p className="text-muted-foreground">Collaborative engineering work</p>
         </motion.div>
 
-        <ResizableProjectGrid storageKey="team-projects-layout" items={gridItems} />
+        <ProjectGrid items={gridItems} />
       </div>
     </div>
   );
