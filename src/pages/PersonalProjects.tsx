@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import ProjectCard from "@/components/ProjectCard";
-import ResizableProjectGrid from "@/components/ResizableProjectGrid";
+import ProjectGrid from "@/components/ProjectGrid";
 import { personalProjects } from "@/data/projects";
 
 const PersonalProjects = () => {
   const gridItems = personalProjects.map((project) => ({
     id: project.id,
-    defaultColSpan: project.span ?? 1,
+    colSpan: project.span ?? 1,
     node: (
       <ProjectCard
         id={project.id}
@@ -32,7 +32,7 @@ const PersonalProjects = () => {
           <p className="text-muted-foreground">Solo builds and experiments</p>
         </motion.div>
 
-        <ResizableProjectGrid storageKey="personal-projects-layout" items={gridItems} />
+        <ProjectGrid items={gridItems} />
       </div>
     </div>
   );
