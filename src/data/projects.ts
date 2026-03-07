@@ -54,7 +54,8 @@ export interface TeamProject {
   toolsUsed: string[];           // Tools, software, languages used
   outcome: string;               // Quantifiable results or key takeaways
 
-  images?: string[];             // Image paths for project gallery (e.g. ["/projects/my-project/photo1.jpg"])
+  images?: string[];             // Image paths for project gallery (kept for backward compat)
+  gallery?: GalleryItem[];       // Mixed media gallery (images + videos). If provided, used instead of `images`.
 
   // Optional extended project metadata
   competitionResult?: string;
