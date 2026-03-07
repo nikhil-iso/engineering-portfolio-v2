@@ -142,7 +142,7 @@ export const teamProjects: TeamProject[] = [
     ],
     role: "Led propulsion optimization and aft-end subsystem design for competition flight.",
     span: 3,
-    cardImage: "/images/Project Up Banner.png",
+    cardImage: "/images/Project Up2 Banner.png",
     description:
       "During Janurary of 2026, I was elected President of the USST, where I shifted my focus from entirely technical to take on greater tasks such as project management and team organization. I preformed organizational duties on top of my technical responsibilities as propulsion lead.",
     competitionResult:
@@ -181,14 +181,6 @@ export const teamProjects: TeamProject[] = [
       "Placed 8th nationally at Launch Canada 2025, achieved 16,500 ft apogee, and received the Spirit Bear Award for community impact.",
     images: ["/images/USST Logo 1.png"],
   },
-
-
-
-
-
-
-
-
   {
     id: "usst-rocketry",
     title: "Project \"UP\" - USST Rocketry",
@@ -246,7 +238,7 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Placed 8th nationally at Launch Canada 2025, achieved 16,500 ft apogee, and received the Spirit Bear Award for community impact.",
-    images: ["/images/Project Up Banner.png", "/images/Project Up Lower Section.png"],
+    images: ["/images/Project Up Banner.png","/images/Project Up Rocket Overview.png", "/images/Project Up Lower Assembly Section View Annotated.png", "/images/Project Up Thrust Plate Annotated.png", "/images/Project UpLower Section Annotated.png"],
   },
   {
     id: "frc-4627-manning",
