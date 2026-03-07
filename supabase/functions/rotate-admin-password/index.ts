@@ -1,13 +1,16 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 Deno.serve(async (req) => {
-  // Only allow POST
   if (req.method !== "POST") {
     return new Response("Method not allowed", { status: 405 });
   }
 
-  const authHeader = req.headers.get("authorization");
-  if (!authHeader?.includes(Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "")) {
+  // Verify service role key from Authorization header
+  const authHeader = req.headers.get("authorization") || "";
+  const token = authHeader.replace("Bearer ", "");
+  const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
+  
+  if (!token || token !== serviceRoleKey) {
     return new Response("Unauthorized", { status: 401 });
   }
 
@@ -18,10 +21,9 @@ Deno.serve(async (req) => {
 
   const supabase = createClient(
     Deno.env.get("SUPABASE_URL")!,
-    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    serviceRoleKey
   );
 
-  // Update the password hash using bcrypt via crypt()
   const { error } = await supabase.rpc("update_admin_password_from_secret", {
     _new_password: newPassword,
   });
