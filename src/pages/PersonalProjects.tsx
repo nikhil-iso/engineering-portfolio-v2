@@ -15,6 +15,7 @@ const PersonalProjects = () => {
         tags={project.skills}
         type="personal"
         span={project.span}
+        image={project.cardImage}
       />
     ),
   }));

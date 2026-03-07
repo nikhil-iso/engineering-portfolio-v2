@@ -15,6 +15,7 @@ export interface PersonalProject {
   description: string;   // Short summary shown on the card
   skills: string[];      // Skill tags shown on the card
   span?: 1 | 2 | 3;     // Column span in the 3-col grid (default 1)
+  cardImage?: string;    // Image path for project card (e.g. "/images/my-card.png")
 
   // ── Detail page fields (shown on /personal-projects/:id) ───
   problemGoal: string;           // What problem were you solving or what was the goal?
@@ -36,6 +37,7 @@ export interface TeamProject {
   technologies: string[];// Tech tags shown on card
   role: string;          // Brief role description for the card
   span?: 1 | 2 | 3;     // Column span in the 3-col grid (default 1)
+  cardImage?: string;    // Image path for project card (e.g. "/images/my-card.png")
 
   // ── Detail page fields (shown on /team-projects/:id) ───────
   problemGoal: string;           // What problem were you solving or what was the goal?
@@ -65,6 +67,7 @@ export const personalProjects: PersonalProject[] = [
       "An open-source sunrise alarm clock that gradually increases room brightness to work with natural sleep cycles, featuring Wi-Fi scheduling, smooth easing ramp curves, and full documentation for reproducibility.",
     skills: ["ESP32", "C++", "Python", "Circuit Design", "3D Printing", "Open Source"],
     span: 3,
+    cardImage: "/images/SimuLight Wide Banner Website.png",
 
     problemGoal:
       "Standard alarm clocks felt harsh, and commercial sunrise lamps were either closed-source, lacked scheduling/customization, or were too expensive for experimentation.\n\nThe goal was to design a fully open-source sunrise alarm that gradually increases brightness to transition the body toward wakefulness more naturally — including the hardware, firmware, enclosure, and documentation.",
@@ -82,6 +85,7 @@ export const personalProjects: PersonalProject[] = [
       "A low-cost, customizable macro keypad built around an Arduino Micro with native USB HID support, designed for accessibility users and power users with modular switch/encoder support.",
     skills: ["Arduino", "C++", "USB HID", "CAD", "3D Printing", "Open Source"],
     span: 2,
+    cardImage: "/images/MacroKeyboard Banner Website.png",
 
     problemGoal:
       "Many existing macro keyboards are closed-source, expensive, or inflexible in hardware and firmware customization.\n\nThe goal was to build a modifiable, cross-platform input device that could be adapted to different user requirements — particularly for accessibility needs or specialized workflows — while remaining serviceable and modular.",
@@ -99,6 +103,7 @@ export const personalProjects: PersonalProject[] = [
       "An image detection system using the OpenCV library to identify patterns through a webcam and drive motors to target detected objects — inspired by Carbon Robotics' laser weeder for industrial farms.",
     skills: ["Python", "OpenCV", "Computer Vision", "Motor Control", "Embedded Systems"],
     span: 1,
+    cardImage: "/images/OpenCV_logo_black.svg.png",
 
     problemGoal:
       "Develop a computer vision platform that can detect specific patterns or objects through a live webcam feed and actuate motors to physically target them. The concept is inspired by Carbon Robotics' laser weeder — an industrial farming tool that identifies weeds and destroys them with a laser. This project aims to replicate that detection-and-targeting pipeline at a smaller scale.",
@@ -137,6 +142,7 @@ export const teamProjects: TeamProject[] = [
     ],
     role: "Led propulsion optimization and aft-end subsystem design for competition flight.",
     span: 3,
+    cardImage: "/images/Project Up Banner.png",
     description:
       "During Janurary of 2026, I was elected President of the USST, where I shifted my focus from entirely technical to take on greater tasks such as project management and team organization. I preformed organizational duties on top of my technical responsibilities as propulsion lead.",
     competitionResult:
@@ -203,6 +209,7 @@ export const teamProjects: TeamProject[] = [
     ],
     role: "Led propulsion integration and aft-end subsystem design for competition flight",
     span: 3,
+    cardImage: "/images/Project Up Banner.png",
     description:
       "Led propulsion integration for an M class high power rocket competing at Launch Canada 2025. Personally responsible for the aft end propulsion interface including the composite boat tail, aluminum thrust plate, and threaded crown motor retention system. Approached the subsystem as a system level engineering problem balancing aerodynamic drag reduction, structural integrity, stability margins, and field serviceability. Used drag area analysis and structural FEA to validate design decisions. Final configuration contributed to a significant increase in apogee performance, reaching 16,500 ft and placing 8th nationally.",
     competitionResult:
@@ -259,6 +266,7 @@ export const teamProjects: TeamProject[] = [
     ],
     role: "Led drivetrain architecture, analysis, and subsystem execution for competition performance",
     span: 2,
+    cardImage: "/images/4627Thor.png",
     description:
       "Served as Mechanical Drivetrain Lead for FRC Team 4627, overseeing drivetrain design and performance optimization for the 2023 competition season. Led a team developing both a dual tank drive system and the team's first swerve drive prototype. Performed torque speed analysis and gear ratio optimization using motor specifications and Excel based modeling to balance acceleration and pushing power. Managed subsystem fabrication, testing, and integration under strict build season timelines.",
     competitionSeason: "2023 FRC Season",
@@ -310,6 +318,7 @@ export const teamProjects: TeamProject[] = [
     ],
     role: "Co-led strategy and mechanical systems for a coordinated two-robot architecture",
     span: 1,
+    cardImage: "/images/skillsbot.JPG",
     description:
       "Competed provincially in the 2023 Skills Alberta Robotics Competition, placing 3rd overall. Our team engineered a coordinated two robot solution consisting of a mechanum drive shooter platform and a secondary robot dedicated to ball collection and feeding. The system design focused on maximizing scoring efficiency through division of labor and controlled positioning. Contributed to drivetrain implementation, shooting system design, and overall strategy optimization under strict competition timelines.",
     competitionResult: "3rd Place Provincially",
@@ -359,7 +368,8 @@ export const teamProjects: TeamProject[] = [
       "GIS",
     ],
     role: "Led product framing and system design for a public facing exoplanet learning experience",
-    span: 2,
+    span: 1,
+    cardImage: "/images/nasaExoplanet.jpg",
     description:
       "Built ExoSpace during the NASA Space Apps Challenge 2024 as a web-based platform for exploring open-source NASA and community datasets through spatial visualization. The team framed the product around exoplanet education, providing an interactive way to explore and understand exoplanetary systems.",
     keyContributions: [

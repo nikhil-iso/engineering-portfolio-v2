@@ -15,6 +15,7 @@ const TeamProjects = () => {
         tags={project.technologies}
         type="team"
         span={project.span}
+        image={project.cardImage ?? project.images?.[0]}
         myTitle={project.myTitle}
         teamSize={project.teamSize}
         peopleManaged={project.peopleManaged}

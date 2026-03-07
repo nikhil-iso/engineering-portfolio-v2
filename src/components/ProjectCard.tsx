@@ -9,6 +9,7 @@ interface ProjectCardProps {
   tags: string[];
   type: "personal" | "team";
   span?: 1 | 2 | 3;
+  image?: string;
   // Team-only extras
   myTitle?: string;
   teamSize?: number;
@@ -16,7 +17,7 @@ interface ProjectCardProps {
   role?: string;
 }
 
-const ProjectCard = ({ id, title, subtitle, tags, type, span = 1, myTitle, teamSize, peopleManaged, role }: ProjectCardProps) => {
+const ProjectCard = ({ id, title, subtitle, tags, type, span = 1, image, myTitle, teamSize, peopleManaged, role }: ProjectCardProps) => {
   const isWide = span > 1;
   const isTeam = type === "team";
 
@@ -28,13 +29,19 @@ const ProjectCard = ({ id, title, subtitle, tags, type, span = 1, myTitle, teamS
           transition={{ duration: 0.2 }}
           className="glow-border rounded-xl p-6 bg-card/60 backdrop-blur-sm cursor-pointer group h-full"
         >
-          {/* Image placeholder */}
+          {/* Card image */}
           <div
-            className={`w-full rounded-lg bg-muted/50 mb-4 overflow-hidden flex items-center justify-center ${
+            className={`w-full rounded-lg bg-muted/50 mb-4 overflow-hidden ${
               isWide ? "h-52" : "h-40"
             }`}
           >
-            <span className="text-4xl opacity-30 group-hover:opacity-60 transition-opacity">🚀</span>
+            {image ? (
+              <img src={image} alt={`${title} cover`} className="w-full h-full object-contain p-2" />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center">
+                <span className="text-4xl opacity-30 group-hover:opacity-60 transition-opacity">IMG</span>
+              </div>
+            )}
           </div>
 
           {/* Title */}
