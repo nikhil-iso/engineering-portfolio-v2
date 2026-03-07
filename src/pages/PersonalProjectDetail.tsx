@@ -3,8 +3,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Target, UserCheck, Wrench, BarChart3, ImageIcon } from "lucide-react";
 import { personalProjects } from "@/data/projects";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import ImageLightbox from "@/components/ImageLightbox";
+import GalleryMedia from "@/components/GalleryMedia";
+import { resolveGallery, getImageSources, galleryIndexToImageIndex } from "@/lib/gallery";
 
 const PersonalProjectDetail = () => {
   const { id } = useParams();
@@ -18,6 +19,14 @@ const PersonalProjectDetail = () => {
       </div>
     );
   }
+
+  const galleryItems = resolveGallery(project.gallery, project.images);
+  const imageSources = getImageSources(galleryItems);
+
+  const handleImageClick = (galleryIdx: number) => {
+    const imgIdx = galleryIndexToImageIndex(galleryItems, galleryIdx);
+    if (imgIdx >= 0) setLightboxIndex(imgIdx);
+  };
 
   return (
     <div className="min-h-screen bg-background star-field pt-24 pb-16">
@@ -83,28 +92,22 @@ const PersonalProjectDetail = () => {
             </div>
           </div>
 
-          {/* Project Images */}
-          {project.images && project.images.length > 0 && (
+          {/* Project Gallery */}
+          {galleryItems.length > 0 && (
             <div className="mt-10">
               <div className="flex items-center gap-2 mb-4">
                 <ImageIcon className="w-5 h-5 text-primary" />
                 <h3 className="text-sm font-semibold text-foreground">Project Gallery</h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {project.images.map((src, i) => (
-                  <div
+                {galleryItems.map((item, i) => (
+                  <GalleryMedia
                     key={i}
-                    className="glow-border rounded-xl overflow-hidden bg-card/50 cursor-pointer group"
-                    onClick={() => setLightboxIndex(i)}
-                  >
-                    <AspectRatio ratio={16 / 9}>
-                      <img
-                        src={src}
-                        alt={`${project.title} image ${i + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </AspectRatio>
-                  </div>
+                    item={item}
+                    index={i}
+                    projectTitle={project.title}
+                    onImageClick={handleImageClick}
+                  />
                 ))}
               </div>
             </div>
@@ -112,9 +115,9 @@ const PersonalProjectDetail = () => {
 
           {/* Lightbox */}
           <AnimatePresence>
-            {lightboxIndex !== null && project.images && (
+            {lightboxIndex !== null && imageSources.length > 0 && (
               <ImageLightbox
-                images={project.images}
+                images={imageSources}
                 initialIndex={lightboxIndex}
                 alt={project.title}
                 onClose={() => setLightboxIndex(null)}

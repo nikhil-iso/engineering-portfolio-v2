@@ -8,6 +8,13 @@
 //   4. Save the file — the site rebuilds automatically
 // ═══════════════════════════════════════════════════════════════
 
+// ── Gallery item — supports images and videos ────────────────
+export interface GalleryItem {
+  type: 'image' | 'video';      // Media type
+  src: string;                   // Path to image or video file
+  poster?: string;               // Optional poster/thumbnail for videos
+}
+
 // ── Personal Project shape ───────────────────────────────────
 export interface PersonalProject {
   id: string;            // URL slug, must be unique (e.g. "custom-pcb")
@@ -22,7 +29,8 @@ export interface PersonalProject {
   roleAndProcess: string;        // Your specific role and the process you followed
   toolsUsed: string[];           // Tools, software, languages used
   outcome: string;               // Quantifiable results or key takeaways
-  images?: string[];             // Image paths for project gallery (e.g. ["/projects/my-project/photo1.jpg"])
+  images?: string[];             // Image paths for project gallery (kept for backward compat)
+  gallery?: GalleryItem[];       // Mixed media gallery (images + videos). If provided, used instead of `images`.
 }
 
 // ── Team Project shape ───────────────────────────────────────
@@ -46,7 +54,8 @@ export interface TeamProject {
   toolsUsed: string[];           // Tools, software, languages used
   outcome: string;               // Quantifiable results or key takeaways
 
-  images?: string[];             // Image paths for project gallery (e.g. ["/projects/my-project/photo1.jpg"])
+  images?: string[];             // Image paths for project gallery (kept for backward compat)
+  gallery?: GalleryItem[];       // Mixed media gallery (images + videos). If provided, used instead of `images`.
 
   // Optional extended project metadata
   competitionResult?: string;
