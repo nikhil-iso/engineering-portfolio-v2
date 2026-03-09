@@ -20,10 +20,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      save_grid_layout: {
-        Args: { _admin_password: string; _id: string; _layout: Json }
-        Returns: boolean
-      }
+      [_ in never]: never
     }
     Enums: {
       [_ in never]: never
