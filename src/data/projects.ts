@@ -152,8 +152,8 @@ export const personalProjects: PersonalProject[] = [
 export const teamProjects: TeamProject[] = [
 
   {
-    id: "usst-rocketry-up2",
-    title: "Project \"Up 2\" - USST Rocketry",
+    id: "usst-rocketry-Theseus",
+    title: "\"Theseus\" - USST Rocketry",
     objective:
       "Redesign, modify, and compete with an upgraded and improved \"Project UP\" at Launch Canada 2026 while redesigning on the previous years shortcomings. ",
     teamSize: 26,
