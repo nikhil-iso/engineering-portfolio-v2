@@ -228,14 +228,6 @@ const Index = () => {
               viewport={{ once: true }}
               className="glow-border rounded-xl p-8 bg-card/50 backdrop-blur-sm space-y-5"
             >
-              {/* Honeypot - hidden from real users */}
-              <input
-                type="text"
-                name="_honeypot"
-                tabIndex={-1}
-                autoComplete="off"
-                style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0, width: 0 }}
-              />
               <h3 className="text-xl font-semibold gradient-text">Send Me a Message</h3>
               <p className="text-sm text-muted-foreground">Whether you have a project idea, or are reaching out about a job opportunity!</p>
               <div className="grid grid-cols-2 gap-4">
