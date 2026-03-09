@@ -8,39 +8,35 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-import { useState, useRef } from "react";
+import { useState } from "react";
+
+const WEB3FORMS_KEY = "01879a1a-0cc7-4c25-be4f-2d4b4338ff31";
 
 const Index = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const formLoadTime = useRef(Date.now());
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
+    formData.append("access_key", WEB3FORMS_KEY);
     const formEl = e.currentTarget;
 
     try {
-      const { data, error } = await supabase.functions.invoke("contact-form", {
-        body: {
-          firstName: formData.get("firstName"),
-          lastName: formData.get("lastName"),
-          email: formData.get("email"),
-          subject: formData.get("subject"),
-          message: formData.get("message"),
-          _honeypot: formData.get("_honeypot"),
-          timestamp: formLoadTime.current,
-        },
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
       });
+      const data = await response.json();
 
-      if (error) throw error;
-
-      toast({ title: "Message sent!", description: "Thanks for reaching out. I'll get back to you soon." });
-      formEl.reset();
-      formLoadTime.current = Date.now();
+      if (data.success) {
+        toast({ title: "Message sent!", description: "Thanks for reaching out. I'll get back to you soon." });
+        formEl.reset();
+      } else {
+        throw new Error(data.message || "Submission failed");
+      }
     } catch (err: any) {
       toast({
         title: "Failed to send",
