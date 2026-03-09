@@ -15,6 +15,12 @@ export interface GalleryItem {
   poster?: string;               // Optional poster/thumbnail for videos
 }
 
+// ── External project material link ───────────────────────────
+export interface ProjectMaterial {
+  label: string;                 // Button label shown in the materials section
+  url: string;                   // External URL (GitHub repo, docs, files, etc.)
+}
+
 // ── Personal Project shape ───────────────────────────────────
 export interface PersonalProject {
   id: string;            // URL slug, must be unique (e.g. "custom-pcb")
@@ -31,6 +37,7 @@ export interface PersonalProject {
   outcome: string;               // Quantifiable results or key takeaways
   images?: string[];             // Image paths for project gallery (kept for backward compat)
   gallery?: GalleryItem[];       // Mixed media gallery (images + videos). If provided, used instead of `images`.
+  materials?: ProjectMaterial[]; // External links for docs, repos, files, and related materials
 }
 
 // ── Team Project shape ───────────────────────────────────────
@@ -56,6 +63,7 @@ export interface TeamProject {
 
   images?: string[];             // Image paths for project gallery (kept for backward compat)
   gallery?: GalleryItem[];       // Mixed media gallery (images + videos). If provided, used instead of `images`.
+  materials?: ProjectMaterial[]; // External links for docs, repos, files, and related materials
 
   // Optional extended project metadata
   competitionResult?: string;
@@ -73,7 +81,7 @@ export const personalProjects: PersonalProject[] = [
     id: "simulight-sunrise",
     title: "SimuLight Sunrise",
     description:
-      "An open-source sunrise alarm clock that gradually increases room brightness to work with natural sleep cycles, featuring Wi-Fi scheduling, smooth easing ramp curves, and full documentation for reproducibility.",
+      "An open-source sunrise alarm clock that gradually increases room brightness to work with natural sleep cycles, featuring Wi-Fi scheduling, smooth ramp curves, and full documentation for reproducibility.",
     skills: ["ESP32", "C++", "Python", "Circuit Design", "3D Printing", "Open Source"],
     span: 3,
     cardImage: "/images/SimuLight Wide Banner Website.png",
@@ -85,6 +93,12 @@ export const personalProjects: PersonalProject[] = [
     toolsUsed: ["ESP32", "C++", "Python", "DS3231 RTC", "MOSFET Switching", "KiCad", "Fusion 360", "JSON", "GitHub"],
     outcome:
       "Lamp ramps from off to full brightness with no perceptible stepping. Schedule execution remains consistent even without network (RTC fallback).\n\nPWM tuned to minimize visible flicker, mid-80% efficiency range depending on load.\n\nRan a small user trial (~6 users) with qualitative feedback pointing to reduced grogginess compared to traditional alarms, guiding default ramp curve selection.",
+    materials: [
+      {
+        label: "View GitHub Repository",
+        url: "https://github.com/nikhil-iso/SimulightSunrise",
+      },
+    ],
     images: ["/images/SimuLight Wide Banner Website.png", "/images/SimuLightPCB.png", "/images/SimuLightPCB3D.png", "/images/Sunrise Alarm Breadboard image.jpg"],
   },
   {
@@ -103,6 +117,12 @@ export const personalProjects: PersonalProject[] = [
     toolsUsed: ["Arduino Micro", "C++", "USB HID", "Cherry MX Switches", "Fusion 360", "3D Printing", "GitHub"],
     outcome:
       "Plug-and-play USB HID operation on Windows, macOS, and Linux with no drivers required. Sub-5 ms debounce variance for responsive input.\n\nAssembly time under 30 minutes per unit. Open-source release resulted in early community engagement validating the project's relevance and extensibility.",
+    materials: [
+      {
+        label: "View GitHub Repository",
+        url: "https://github.com/nikhil-iso/Arduino-Macropad",
+      },
+    ],
     images: ["/images/MacroKeyboard Banner Website.png", "/images/Macropad V2 (WIP) v10.png"],
   },
   {
@@ -395,7 +415,7 @@ export const teamProjects: TeamProject[] = [
     myFocus:
       "Product framing, dataset selection, and interaction design that turned raw data into an understandable learning flow.",
     roleAndProcess:
-      "Facilitated rapid scoping sessions, turned the objective into an MVP checklist, and helped the team sequence work around data ingestion, visualization, and content. Reviewed progress frequently to keep features aligned with the learning goals and ensured the demo flow remained clear for first time users.",
+      "Led work sessions to define the target audience, learning goals, and setting project boundaries for a 48-hour build. Translated those decisions into product development flowcharts, then executed tasks across data visualization, and content writing so each feature supported the same educational narrative.\n\nRan frequent scope checks to keep the team on schedule, and wrote plain-language explanations to make technical exoplanet data approachable for first-time users.",
     toolsUsed: [
       "JavaScript",
       "HTML/CSS",
@@ -405,7 +425,7 @@ export const teamProjects: TeamProject[] = [
       "GitHub",
     ],
     outcome:
-      "Delivered a working 48 hour prototype with interactive exploration, filterable attributes, and plain language explainers that made exoplanet concepts more accessible to first time learners.",
+      "Shipped a complete 48-hour prototype featuring interactive map exploration, filterable exoplanet attributes, and accessibility-first explainers. The final demo validated the core concept: complex NASA open data could be turned into a clear, guided learning experience for non-expert audiences.",
     images: ["/images/nasaExoplanet.jpg"],
   },
 ];

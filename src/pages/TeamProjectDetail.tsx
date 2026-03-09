@@ -5,6 +5,7 @@ import { ArrowLeft, Target, UserCheck, Wrench, BarChart3, Briefcase, ImageIcon }
 import { teamProjects } from "@/data/projects";
 import ImageLightbox from "@/components/ImageLightbox";
 import GalleryMedia from "@/components/GalleryMedia";
+import ProjectMaterials from "@/components/ProjectMaterials";
 import { resolveGallery, getImageSources, galleryIndexToImageIndex } from "@/lib/gallery";
 
 const TeamProjectDetail = () => {
@@ -102,6 +103,8 @@ const TeamProjectDetail = () => {
                 </div>
               </div>
             </div>
+
+            <ProjectMaterials materials={project.materials} />
           </div>
 
           {/* Project Gallery */}
