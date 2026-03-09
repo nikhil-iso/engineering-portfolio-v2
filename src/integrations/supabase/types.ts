@@ -14,72 +14,7 @@ export type Database = {
   }
   public: {
     Tables: {
-      admin_config: {
-        Row: {
-          key: string
-          value: string
-        }
-        Insert: {
-          key: string
-          value: string
-        }
-        Update: {
-          key?: string
-          value?: string
-        }
-        Relationships: []
-      }
-      contact_submissions: {
-        Row: {
-          created_at: string
-          email: string
-          first_name: string
-          id: string
-          ip_address: string | null
-          last_name: string
-          message: string
-          subject: string
-        }
-        Insert: {
-          created_at?: string
-          email: string
-          first_name: string
-          id?: string
-          ip_address?: string | null
-          last_name: string
-          message: string
-          subject: string
-        }
-        Update: {
-          created_at?: string
-          email?: string
-          first_name?: string
-          id?: string
-          ip_address?: string | null
-          last_name?: string
-          message?: string
-          subject?: string
-        }
-        Relationships: []
-      }
-      grid_layouts: {
-        Row: {
-          id: string
-          layout: Json
-          updated_at: string
-        }
-        Insert: {
-          id: string
-          layout?: Json
-          updated_at?: string
-        }
-        Update: {
-          id?: string
-          layout?: Json
-          updated_at?: string
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
@@ -89,7 +24,6 @@ export type Database = {
         Args: { _admin_password: string; _id: string; _layout: Json }
         Returns: boolean
       }
-      verify_admin_password: { Args: { _password: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
