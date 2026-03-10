@@ -72,7 +72,7 @@ const SkillsMarquee = memo(function SkillsMarquee() {
       {rows.map((category) => (
         <div key={category.title} className="mb-10">
           <h3 className="text-lg font-semibold text-foreground/80 text-center mb-4">{category.title}</h3>
-          <div className="marquee-row overflow-hidden relative mx-auto w-full md:w-[75%]">
+          <div className="marquee-row overflow-hidden relative mx-auto w-full md:w-[75%] px-2 sm:px-0">
             <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
             <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
             <div
@@ -82,12 +82,12 @@ const SkillsMarquee = memo(function SkillsMarquee() {
               {category.looped.map((skill, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 mx-4 flex flex-col items-center gap-3 p-6 rounded-xl glow-border bg-card/50 min-w-[140px]"
+                  className="flex-shrink-0 mx-2 sm:mx-4 flex flex-col items-center gap-2 sm:gap-3 p-4 sm:p-6 rounded-xl glow-border bg-card/50 min-w-[100px] sm:min-w-[140px]"
                 >
                   <img
                     src={skill.img}
                     alt={skill.name}
-                    className="w-12 h-12 object-contain"
+                    className="w-9 h-9 sm:w-12 sm:h-12 object-contain"
                     loading="lazy"
                     decoding="async"
                   />
