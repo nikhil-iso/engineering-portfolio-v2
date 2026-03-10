@@ -51,7 +51,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background star-field">
       {/* Hero */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-8 md:px-16 relative overflow-hidden">
+      <section className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 relative overflow-hidden">
         {/* ColorBends background */}
         <div className="absolute inset-0 pointer-events-none">
           <ColorBends
