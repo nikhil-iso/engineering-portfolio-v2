@@ -76,7 +76,7 @@ const Index = () => {
           className="z-10 flex flex-col md:flex-row items-center gap-6 md:gap-16 max-w-5xl w-full"
         >
           {/* Text content */}
-          <div className="flex-1 text-left bg-background/50 backdrop-blur-md rounded-2xl p-8 border border-border/40" style={{ boxShadow: "0 8px 32px hsl(230 25% 4% / 0.6), inset 0 1px 0 hsl(220 20% 90% / 0.05)" }}>
+          <div className="flex-1 text-left bg-background/50 backdrop-blur-md rounded-2xl p-5 sm:p-8 border border-border/40" style={{ boxShadow: "0 8px 32px hsl(230 25% 4% / 0.6), inset 0 1px 0 hsl(220 20% 90% / 0.05)" }}>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-3 leading-tight">
               <span
                 className="text-foreground"
