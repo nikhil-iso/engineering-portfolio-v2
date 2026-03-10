@@ -45,7 +45,7 @@ const ProjectCard = ({ id, title, subtitle, tags, type, span = 1, image, myTitle
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-1">
+          <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors mb-1">
             {title}
           </h3>
 
@@ -53,20 +53,20 @@ const ProjectCard = ({ id, title, subtitle, tags, type, span = 1, image, myTitle
           {isTeam && (myTitle || teamSize !== undefined || peopleManaged !== undefined) && (
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-2">
               {myTitle && (
-                <span className="flex items-center gap-1 text-xs font-semibold text-primary">
-                  <Briefcase className="w-3 h-3" />
+                <span className="flex items-center gap-1.5 text-sm font-semibold text-primary">
+                  <Briefcase className="w-4 h-4" />
                   {myTitle}
                 </span>
               )}
               {teamSize !== undefined && (
-                <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                  <Users className="w-3 h-3" />
+                <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                  <Users className="w-4 h-4" />
                   Team of {teamSize}
                 </span>
               )}
               {peopleManaged !== undefined && (
-                <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                  <User className="w-3 h-3" />
+                <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                  <User className="w-4 h-4" />
                   Managed {peopleManaged}
                 </span>
               )}
@@ -75,9 +75,9 @@ const ProjectCard = ({ id, title, subtitle, tags, type, span = 1, image, myTitle
 
           {/* Role / subtitle */}
           {isTeam && role ? (
-            <p className="text-xs text-muted-foreground/80 italic mb-3">{role}</p>
+            <p className="text-sm text-muted-foreground/80 italic mb-3">{role}</p>
           ) : (
-            <p className="text-sm text-muted-foreground mt-1 mb-3">{subtitle}</p>
+            <p className="text-[0.938rem] text-muted-foreground mt-1 mb-3">{subtitle}</p>
           )}
 
           {/* Skill tags */}
