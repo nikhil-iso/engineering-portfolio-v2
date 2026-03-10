@@ -127,7 +127,7 @@ const Index = () => {
             className="shrink-0"
           >
             <div
-              className="w-52 h-52 md:w-64 md:h-64 rounded-full glow-border bg-card/60 backdrop-blur-sm relative overflow-hidden"
+              className="w-36 h-36 sm:w-52 sm:h-52 md:w-64 md:h-64 rounded-full glow-border bg-card/60 backdrop-blur-sm relative overflow-hidden"
               style={{ boxShadow: "0 0 40px hsl(260 80% 60% / 0.3), 0 0 80px hsl(220 80% 55% / 0.15)" }}
             >
               {/* Gradient background inside circle */}
