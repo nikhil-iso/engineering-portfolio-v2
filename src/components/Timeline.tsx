@@ -38,9 +38,9 @@ const timelineItems = [
   {
     year: "2026",
     title: "Launch Canada 2026",
-    description: "Project 'UP 2: Down' - My second rocket competition. Utilizing learning experiences gained from the first to improve on our past design.",
+    description: "Project 'Theseus' - My second rocket competition. Utilizing learning experiences gained from the first to improve on our past design.",
     projects: [
-      { label: "Project \"UP 2: Down\" - USST Rocketry", path: "/team-projects/usst-rocketry-up2" },
+      { label: "Project \"Theseus\" - USST Rocketry", path: "/team-projects/usst-rocketry-theseus" },
     ],
   },
 ];

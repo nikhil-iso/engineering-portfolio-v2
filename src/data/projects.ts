@@ -152,7 +152,7 @@ export const personalProjects: PersonalProject[] = [
 export const teamProjects: TeamProject[] = [
 
   {
-    id: "usst-rocketry-Theseus",
+    id: "usst-rocketry-theseus",
     title: "Project \"Theseus\" - USST Rocketry",
     objective:
       "Redesign, modify, and compete with an upgraded and improved \"Project UP\" at Launch Canada 2026 while redesigning on the previous years shortcomings. ",
