@@ -85,7 +85,7 @@ const Index = () => {
                 Nikhil Patel
               </span>
             </h1>
-            <p className="text-xl md:text-2xl font-semibold mb-3 gradient-text">
+            <p className="text-lg sm:text-xl md:text-2xl font-semibold mb-3 gradient-text">
               Engineering Student &amp; Designer
             </p>
             <div className="h-8 mb-8">
