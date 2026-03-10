@@ -87,7 +87,7 @@ const SkillsMarquee = memo(function SkillsMarquee() {
                   <img
                     src={skill.img}
                     alt={skill.name}
-                    className="w-12 h-12 object-contain"
+                    className="w-9 h-9 sm:w-12 sm:h-12 object-contain"
                     loading="lazy"
                     decoding="async"
                   />
