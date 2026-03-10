@@ -66,7 +66,7 @@ const PersonalProjectDetail = () => {
               </div>
             </div>
 
-            {/* Tools Used */}
+            {/* Tools U sed */}
             <div className="glow-border rounded-xl p-5 bg-card/50 flex items-start gap-3">
               <Wrench className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
               <div>
