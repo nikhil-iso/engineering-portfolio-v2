@@ -82,7 +82,7 @@ const SkillsMarquee = memo(function SkillsMarquee() {
               {category.looped.map((skill, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 mx-4 flex flex-col items-center gap-3 p-6 rounded-xl glow-border bg-card/50 min-w-[140px]"
+                  className="flex-shrink-0 mx-2 sm:mx-4 flex flex-col items-center gap-2 sm:gap-3 p-4 sm:p-6 rounded-xl glow-border bg-card/50 min-w-[100px] sm:min-w-[140px]"
                 >
                   <img
                     src={skill.img}
