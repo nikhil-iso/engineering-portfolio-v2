@@ -73,7 +73,7 @@ const Index = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="z-10 flex flex-col md:flex-row items-center gap-10 md:gap-16 max-w-5xl w-full"
+          className="z-10 flex flex-col md:flex-row items-center gap-6 md:gap-16 max-w-5xl w-full"
         >
           {/* Text content */}
           <div className="flex-1 text-left bg-background/50 backdrop-blur-md rounded-2xl p-8 border border-border/40" style={{ boxShadow: "0 8px 32px hsl(230 25% 4% / 0.6), inset 0 1px 0 hsl(220 20% 90% / 0.05)" }}>
