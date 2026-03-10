@@ -155,9 +155,9 @@ export const teamProjects: TeamProject[] = [
     id: "usst-rocketry-theseus",
     title: "Project \"Theseus\" - USST Rocketry",
     objective:
-      "Redesign, modify, and compete with an upgraded and improved \"Project UP\" at Launch Canada 2026 while redesigning on the previous years shortcomings. ",
+      "Redesign, modify, and compete with an upgraded and improved \"Project UP\" at Launch Canada 2026 while addressing the previous year's shortcomings.",
     teamSize: 26,
-    myTitle: "Propulsion Lead",
+    myTitle: "President & Propulsion Lead",
     peopleManaged: 2,
     technologies: [
       "SolidWorks",
@@ -169,11 +169,11 @@ export const teamProjects: TeamProject[] = [
       "Composite Manufacturing",
       "CNC Machining",
     ],
-    role: "Led propulsion optimization and aft-end subsystem design for competition flight.",
+    role: "Undertook the presidential role, balancing organizational leadership with propulsion subsystem design.",
     span: 3,
     cardImage: "/images/Project Up2 Banner.png",
     description:
-      "During Janurary of 2026, I was elected President of the USST, where I shifted my focus from entirely technical to take on greater tasks such as project management and team organization. I preformed organizational duties on top of my technical responsibilities as propulsion lead.",
+      "In January 2026, I was elected President of the USST, taking on broader organizational duties including project management, team coordination, and stakeholder communication alongside my continuing technical responsibilities as propulsion lead.",
     competitionResult:
       "TBD at Launch Canada 2026",
     keyContributions: [
