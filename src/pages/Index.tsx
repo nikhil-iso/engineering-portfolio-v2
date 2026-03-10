@@ -301,7 +301,7 @@ const Index = () => {
                 <p className="text-sm text-muted-foreground">
                   Currently seeking internships, co-op positions, and collaborative projects in Electrical engineering and Mechatronics technology.
                 </p>
-                <a href="/website_resume.pdf" download>
+                <a href="/nikhil-eng-resume.pdf" download>
                   <Button variant="outline" className="w-full gap-2 border-primary/50 hover:bg-primary/10">
                     <Download className="w-4 h-4" />
                     Download Resume
