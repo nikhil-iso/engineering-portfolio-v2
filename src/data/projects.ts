@@ -267,10 +267,14 @@ export const teamProjects: TeamProject[] = [
     ],
     outcome:
       "Placed 8th nationally at Launch Canada 2025, achieved 16,500 ft apogee, and received the Spirit Bear Award for community impact.",
-    images: ["/images/Project Up Banner.png","/images/Project Up Rocket Overview.png", "/images/Project Up Lower Assembly Section View Annotated.png", "/images/Project Up Thrust Plate Annotated.png", "/images/Project UpLower Section Annotated.png"],
-    gallery: [{ type: 'video' , src: '/images/Project Up Launch Video.mp4', poster: '/images/Project Up Banner.png' 
-      
-    }],
+    gallery: [
+      { type: 'video', src: '/images/Project Up Launch Video.mp4' },
+      { type: 'image', src: '/images/Project Up Banner.png' },
+      { type: 'image', src: '/images/Project Up Rocket Overview.png' },
+      { type: 'image', src: '/images/Project Up Lower Assembly Section View Annotated.png' },
+      { type: 'image', src: '/images/Project Up Thrust Plate Annotated.png' },
+      { type: 'image', src: '/images/Project UpLower Section Annotated.png' },
+    ],
   },
   {
     id: "frc-4627-manning",

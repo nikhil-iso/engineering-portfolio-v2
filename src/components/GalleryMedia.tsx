@@ -23,17 +23,13 @@ const GalleryMedia = ({ item, index, projectTitle, onImageClick }: GalleryMediaP
               className="relative w-full h-full"
               aria-label={`Play video ${index + 1}`}
             >
-              {item.poster ? (
-                <img
-                  src={item.poster}
-                  alt={`${projectTitle} video ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full bg-muted flex items-center justify-center">
-                  <span className="text-xs text-muted-foreground">Video</span>
-                </div>
-              )}
+              <video
+                src={item.src}
+                muted
+                playsInline
+                preload="metadata"
+                className="w-full h-full object-cover pointer-events-none"
+              />
               <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
                 <div className="w-14 h-14 rounded-full bg-primary/90 flex items-center justify-center shadow-lg">
                   <Play className="w-6 h-6 text-primary-foreground ml-0.5" />
