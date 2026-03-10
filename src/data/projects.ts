@@ -135,7 +135,7 @@ export const personalProjects: PersonalProject[] = [
     cardImage: "/images/OpenCV_logo_black.svg.png",
 
     problemGoal:
-      "Develop a computer vision platform that can detect specific patterns or objects through a live webcam feed and actuate motors to physically target them. The concept is inspired by Carbon Robotics' laser weeder — an industrial farming tool that identifies weeds and destroys them with a laser. This project aims to replicate that detection-and-targeting pipeline at a smaller scale.",
+      "Develop a computer vision platform that can detect specific patterns or objects through a live webcam feed and actuate motors to point at said pattern or object. The concept is inspired by Carbon Robotics' laser weeder — an industrial farming tool that identifies weeds and destroys them with a laser. This project aims to replicate that detection-and-targeting pipeline at a smaller scale.",
     roleAndProcess:
       "Currently in active development. Building the vision pipeline using Python and OpenCV for real-time pattern recognition, with motor control integration to physically track and target detected objects. The system architecture separates detection, tracking, and actuation into modular stages for easier iteration and testing.",
     toolsUsed: ["Python", "OpenCV", "Webcam", "Motor Controllers", "Embedded Systems"],
@@ -153,7 +153,7 @@ export const teamProjects: TeamProject[] = [
 
   {
     id: "usst-rocketry-Theseus",
-    title: "\"Theseus\" - USST Rocketry",
+    title: "Project \"Theseus\" - USST Rocketry",
     objective:
       "Redesign, modify, and compete with an upgraded and improved \"Project UP\" at Launch Canada 2026 while redesigning on the previous years shortcomings. ",
     teamSize: 26,
@@ -175,7 +175,7 @@ export const teamProjects: TeamProject[] = [
     description:
       "During Janurary of 2026, I was elected President of the USST, where I shifted my focus from entirely technical to take on greater tasks such as project management and team organization. I preformed organizational duties on top of my technical responsibilities as propulsion lead.",
     competitionResult:
-      "8th nationally at Launch Canada 2025, 16,500 ft apogee, Spirit Bear Award for community impact",
+      "TBD at Launch Canada 2026",
     keyContributions: [
       "Designed and manufactured composite aerodynamic boat tail for base drag reduction",
       "Engineered threaded external motor retention system for serviceability and axial load transfer",
@@ -191,7 +191,7 @@ export const teamProjects: TeamProject[] = [
       "System level design tradeoff analysis",
     ],
     problemGoal:
-      "Design, manufacture, and compete with an M class high power rocket at Launch Canada 2025 while optimizing propulsion integration and aerodynamic performance.",
+      "Design, manufacture, and compete with an upgraded M class high power rocket at Launch Canada 2026 while optimizing propulsion integration and aerodynamic performance.",
     myFocus:
       "Aerodynamic drag reduction, weight reduction, structural load path design, motor integration and CG optimization, manufacturability, and system-level tradeoff analysis.",
     roleAndProcess:
@@ -207,7 +207,7 @@ export const teamProjects: TeamProject[] = [
       "CNC Machining",
     ],
     outcome:
-      "Placed 8th nationally at Launch Canada 2025, achieved 16,500 ft apogee, and received the Spirit Bear Award for community impact.",
+      "TBD at Launch Canada 2026",
     images: ["/images/USST Logo 1.png"],
   },
   {
@@ -292,11 +292,11 @@ export const teamProjects: TeamProject[] = [
       "Swerve Drive Systems",
       "DC Motor Analysis",
     ],
-    role: "Led drivetrain architecture, analysis, and subsystem execution for competition performance",
+    role: "Led drivetrain architecture, analysis, and optimization for competitive performance",
     span: 2,
     cardImage: "/images/4627Thor.png",
     description:
-      "Served as Mechanical Drivetrain Lead for FRC Team 4627, overseeing drivetrain design and performance optimization for the 2023 competition season. Led a team developing both a dual tank drive system and the team's first swerve drive prototype. Performed torque speed analysis and gear ratio optimization using motor specifications and Excel based modeling to balance acceleration and pushing power. Managed subsystem fabrication, testing, and integration under strict build season timelines.",
+      "Served as Mechanical Drivetrain Lead for FRC Team 4627 Manning Robotics, overseeing drivetrain design and performance optimization for the 2023 competition season. Led a team developing both a dual tank drive system and the team's first swerve drive prototype. Performed torque speed analysis and gear ratio optimization using motor specifications and Excel based modeling to balance acceleration and pushing power. Managed subsystem fabrication, testing, and integration under strict build season timelines.",
     competitionSeason: "2023 FRC Season",
     keyContributions: [
       "Led development of team's first swerve drive prototype",
@@ -344,7 +344,7 @@ export const teamProjects: TeamProject[] = [
       "Mechanical Design",
       "Embedded Control",
     ],
-    role: "Co-led strategy and mechanical systems for a coordinated two-robot architecture",
+    role: "Co-led strategy and mechanical systems for a coordinated two-robot setup",
     span: 1,
     cardImage: "/images/skillsbot.JPG",
     description:
@@ -352,7 +352,7 @@ export const teamProjects: TeamProject[] = [
     competitionResult: "3rd Place Provincially",
     keyContributions: [
       "Co designed dual robot strategy using shooter bot and collector bot",
-      "Implemented mechanum drive system for omnidirectional positioning",
+      "Implemented mechanum drive system for multidirectional positioning",
       "Optimized shooting mechanism for repeatable scoring accuracy",
       "Coordinated subsystem integration under limited development time",
     ],
