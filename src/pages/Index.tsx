@@ -77,7 +77,7 @@ const Index = () => {
         >
           {/* Text content */}
           <div className="flex-1 text-left bg-background/50 backdrop-blur-md rounded-2xl p-5 sm:p-8 border border-border/40" style={{ boxShadow: "0 8px 32px hsl(230 25% 4% / 0.6), inset 0 1px 0 hsl(220 20% 90% / 0.05)" }}>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-3 leading-tight">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-3 leading-tight">
               <span
                 className="text-foreground"
                 style={{ textShadow: "0 2px 24px hsl(260 80% 60% / 0.25), 0 1px 0 hsl(220 20% 90% / 0.8)" }}
