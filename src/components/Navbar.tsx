@@ -48,7 +48,7 @@ const Navbar = () => {
                 <Download className="w-4 h-4" /> Resume
               </Button>
             </a>
-            <a href="/portfolio.pdf" download>
+            <a href="/nikhil-eng project portfolio.pdf" download>
               <Button variant="outline" size="sm" className="gap-2">
                 <Download className="w-4 h-4" /> Portfolio
               </Button>
@@ -96,7 +96,7 @@ const Navbar = () => {
                   <Download className="w-4 h-4" /> Resume
                 </Button>
               </a>
-              <a href="/portfolio.pdf" download>
+              <a href="/nikhil-eng project portfolio.pdf" download>
                 <Button variant="outline" size="sm" className="gap-2 w-full">
                   <Download className="w-4 h-4" /> Portfolio
                 </Button>
