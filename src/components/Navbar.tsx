@@ -42,11 +42,18 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
-          <a href="/website_resume.pdf" download>
-            <Button variant="outline" size="sm" className="gap-2">
-              <Download className="w-4 h-4" /> Resume
-            </Button>
-          </a>
+          <div className="flex items-center gap-2">
+            <a href="/website_resume.pdf" download>
+              <Button variant="outline" size="sm" className="gap-2">
+                <Download className="w-4 h-4" /> Resume
+              </Button>
+            </a>
+            <a href="/portfolio.pdf" download>
+              <Button variant="outline" size="sm" className="gap-2">
+                <Download className="w-4 h-4" /> Portfolio
+              </Button>
+            </a>
+          </div>
         </div>
 
         {/* Mobile hamburger */}
@@ -87,6 +94,11 @@ const Navbar = () => {
               <a href="/website_resume.pdf" download className="mt-1">
                 <Button variant="outline" size="sm" className="gap-2 w-full">
                   <Download className="w-4 h-4" /> Resume
+                </Button>
+              </a>
+              <a href="/portfolio.pdf" download>
+                <Button variant="outline" size="sm" className="gap-2 w-full">
+                  <Download className="w-4 h-4" /> Portfolio
                 </Button>
               </a>
             </div>
