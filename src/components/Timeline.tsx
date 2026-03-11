@@ -67,7 +67,7 @@ const Timeline = () => {
             >
               <div className={`w-1/2 ${index % 2 === 0 ? "pr-10 text-right" : "pl-10"}`}>
                 <div className="glow-border rounded-xl p-5 bg-card/80">
-                  <span className="text-sm font-mono text-primary">{item.year}</span>
+                  <span className="text-base md:text-lg font-mono text-primary">{item.year}</span>
                   <h3 className="text-lg font-semibold text-foreground mt-1">{item.title}</h3>
                   <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
                   {item.projects && item.projects.length > 0 && (
