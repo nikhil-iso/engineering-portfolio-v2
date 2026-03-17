@@ -51,21 +51,21 @@ const Timeline = () => {
       <div className="max-w-3xl mx-auto px-6">
         <h2 className="text-3xl font-bold gradient-text text-center mb-12">My Journey</h2>
         <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/60 via-secondary/40 to-transparent" />
+          {/* Vertical line - hidden on mobile */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/60 via-secondary/40 to-transparent" />
 
           {timelineItems.map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
-              className={`relative flex items-center mb-12 ${
-                index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+              className={`relative mb-8 md:mb-12 md:flex md:items-center ${
+                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               }`}
             >
-              <div className={`w-1/2 ${index % 2 === 0 ? "pr-10 text-right" : "pl-10"}`}>
+              <div className={`w-full md:w-1/2 ${index % 2 === 0 ? "md:pr-10 md:text-right" : "md:pl-10"}`}>
                 <div className="glow-border rounded-xl p-5 bg-card/80">
                   <span className="text-base md:text-lg font-mono text-primary">{item.year}</span>
                   <h3 className="text-lg font-semibold text-foreground mt-1">{item.title}</h3>
@@ -86,9 +86,9 @@ const Timeline = () => {
                   )}
                 </div>
               </div>
-              {/* Center dot */}
-              <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary glow-box" />
-              <div className="w-1/2" />
+              {/* Center dot - hidden on mobile */}
+              <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary glow-box" />
+              <div className="hidden md:block w-1/2" />
             </motion.div>
           ))}
         </div>
