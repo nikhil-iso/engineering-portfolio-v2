@@ -15,7 +15,7 @@ const Footer = () => {
           <MapPin className="w-4 h-4 text-secondary" />
           <p className="text-sm text-muted-foreground">Saskatoon, SK, Canada</p>
         </div>
-        <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Nikhil Patel</p>
+        <p className="text-xs text-muted-foreground">Copyright {new Date().getFullYear()} Nikhil Patel</p>
       </div>
     </footer>
   );

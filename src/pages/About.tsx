@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { lazy, Suspense } from "react";
+import Seo from "@/components/Seo";
+import { buildBreadcrumbStructuredData } from "@/lib/site";
 
 const Timeline = lazy(() => import("@/components/Timeline"));
 const SkillsMarquee = lazy(() => import("@/components/SkillsMarquee"));
@@ -7,6 +9,16 @@ const SkillsMarquee = lazy(() => import("@/components/SkillsMarquee"));
 const About = () => {
   return (
     <div className="min-h-screen bg-background star-field pt-24">
+      <Seo
+        title="About Nikhil Patel | Electrical Engineering Portfolio"
+        description="Learn more about Nikhil Patel, an electrical engineering student at the University of Saskatchewan focused on rocketry, embedded systems, and robotics."
+        path="/about"
+        structuredData={buildBreadcrumbStructuredData([
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ])}
+      />
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

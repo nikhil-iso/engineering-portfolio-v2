@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import ProjectCard from "@/components/ProjectCard";
 import ProjectGrid from "@/components/ProjectGrid";
 import { personalProjects } from "@/data/projects";
+import Seo from "@/components/Seo";
+import { buildCollectionStructuredData } from "@/lib/site";
 
 const PersonalProjects = () => {
   const gridItems = personalProjects.map((project) => ({
@@ -22,6 +24,21 @@ const PersonalProjects = () => {
 
   return (
     <div className="min-h-screen bg-background star-field pt-24 pb-16">
+      <Seo
+        title="Personal Projects | Nikhil Patel"
+        description="Browse Nikhil Patel's personal engineering projects in embedded systems, hardware design, open-source devices, and computer vision."
+        path="/personal-projects"
+        structuredData={buildCollectionStructuredData(
+          "Personal Projects | Nikhil Patel",
+          "Personal engineering projects in embedded systems, hardware design, and computer vision.",
+          "/personal-projects",
+          personalProjects.map((project) => ({
+            name: project.title,
+            path: `/personal-projects/${project.id}`,
+          })),
+        )}
+      />
+
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

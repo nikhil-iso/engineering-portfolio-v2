@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import Seo from "@/components/Seo";
+import { homeStructuredData } from "@/lib/site";
 
 const WEB3FORMS_KEY = "01879a1a-0cc7-4c25-be4f-2d4b4338ff31";
 
@@ -50,6 +52,13 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background star-field">
+      <Seo
+        title="Nikhil Patel | Electrical Engineering Portfolio"
+        description="Electrical engineering portfolio featuring rocketry, embedded systems, robotics, and hardware design projects by Nikhil Patel."
+        path="/"
+        structuredData={homeStructuredData}
+      />
+
       {/* Hero */}
       <section className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-8 md:px-16 relative overflow-hidden">
         {/* ColorBends background */}
@@ -86,11 +95,15 @@ const Index = () => {
               </span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl font-semibold mb-3 gradient-text">
-              Engineering Student &amp; Designer
+              Electrical Engineering Student &amp; Designer
             </p>
             <div className="h-8 mb-8">
               <TypewriterEffect />
             </div>
+            <p className="max-w-2xl text-sm sm:text-base text-muted-foreground mb-8">
+              Electrical Engineering student at the University of Saskatchewan building rocketry,
+              embedded systems, robotics, and hardware design projects.
+            </p>
 
             {/* Social buttons */}
             <div className="flex items-center gap-4 flex-wrap">

@@ -7,6 +7,11 @@ import ImageLightbox from "@/components/ImageLightbox";
 import GalleryMedia from "@/components/GalleryMedia";
 import ProjectMaterials from "@/components/ProjectMaterials";
 import { resolveGallery, getImageSources, galleryIndexToImageIndex } from "@/lib/gallery";
+import Seo from "@/components/Seo";
+import {
+  buildBreadcrumbStructuredData,
+  buildProjectStructuredData,
+} from "@/lib/site";
 
 const PersonalProjectDetail = () => {
   const { id } = useParams();
@@ -16,6 +21,11 @@ const PersonalProjectDetail = () => {
   if (!project) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
+        <Seo
+          title="Project Not Found | Nikhil Patel"
+          description="The requested personal project page could not be found."
+          noindex
+        />
         <p className="text-muted-foreground">Project not found.</p>
       </div>
     );
@@ -31,6 +41,26 @@ const PersonalProjectDetail = () => {
 
   return (
     <div className="min-h-screen bg-background star-field pt-24 pb-16">
+      <Seo
+        title={`${project.title} | Nikhil Patel`}
+        description={project.description}
+        path={`/personal-projects/${project.id}`}
+        image={project.cardImage ?? project.images?.[0]}
+        type="article"
+        structuredData={[
+          ...buildProjectStructuredData(
+            project,
+            `/personal-projects/${project.id}`,
+            project.skills,
+          ),
+          buildBreadcrumbStructuredData([
+            { name: "Home", path: "/" },
+            { name: "Personal Projects", path: "/personal-projects" },
+            { name: project.title, path: `/personal-projects/${project.id}` },
+          ]),
+        ]}
+      />
+
       <div className="max-w-3xl mx-auto px-6">
         <Link
           to="/personal-projects"

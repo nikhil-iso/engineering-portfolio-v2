@@ -42,7 +42,7 @@ const Navbar = () => {
               {item.label}
             </Link>
           ))}
-          <a href="/website_resume.pdf" download>
+          <a href="/nikhil-eng-resume.pdf" download>
             <Button variant="outline" size="sm" className="gap-2">
               <Download className="w-4 h-4" /> Resume
             </Button>
@@ -84,7 +84,7 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
-              <a href="/website_resume.pdf" download className="mt-1">
+              <a href="/nikhil-eng-resume.pdf" download className="mt-1">
                 <Button variant="outline" size="sm" className="gap-2 w-full">
                   <Download className="w-4 h-4" /> Resume
                 </Button>
