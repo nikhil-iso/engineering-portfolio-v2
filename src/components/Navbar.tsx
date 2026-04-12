@@ -43,16 +43,21 @@ const Navbar = () => {
             </Link>
           ))}
           <div className="flex items-center gap-2">
-            <a href="/nikhil-eng-resume.pdf" download>
+            <Link to="/documents/resume">
               <Button variant="outline" size="sm" className="gap-2">
                 <Download className="w-4 h-4" /> Resume
               </Button>
-            </a>
-            <a href="/nikhil-eng project portfolio.pdf" download>
+            </Link>
+            <Link to="/documents/portfolio">
               <Button variant="outline" size="sm" className="gap-2">
                 <Download className="w-4 h-4" /> Portfolio
               </Button>
-            </a>
+            </Link>
+            <Link to="/documents/cv">
+              <Button variant="outline" size="sm" className="gap-2">
+                <Download className="w-4 h-4" /> CV
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -91,16 +96,21 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
-              <a href="/nikhil-eng-resume.pdf" download className="mt-1">
+              <Link to="/documents/resume" onClick={() => setMobileOpen(false)} className="mt-1">
                 <Button variant="outline" size="sm" className="gap-2 w-full">
                   <Download className="w-4 h-4" /> Resume
                 </Button>
-              </a>
-              <a href="/nikhil-eng project portfolio.pdf" download>
+              </Link>
+              <Link to="/documents/portfolio" onClick={() => setMobileOpen(false)}>
                 <Button variant="outline" size="sm" className="gap-2 w-full">
                   <Download className="w-4 h-4" /> Portfolio
                 </Button>
-              </a>
+              </Link>
+              <Link to="/documents/cv" onClick={() => setMobileOpen(false)}>
+                <Button variant="outline" size="sm" className="gap-2 w-full">
+                  <Download className="w-4 h-4" /> CV
+                </Button>
+              </Link>
             </div>
           </motion.div>
         )}
