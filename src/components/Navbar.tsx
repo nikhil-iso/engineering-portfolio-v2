@@ -43,14 +43,19 @@ const Navbar = () => {
             </Link>
           ))}
           <div className="flex items-center gap-2">
-            <a href="/nikhil-eng-resume.pdf" download>
+            <a href="/docs/rs-np-4e9f1c.pdf" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="sm" className="gap-2">
                 <Download className="w-4 h-4" /> Resume
               </Button>
             </a>
-            <a href="/nikhil-eng project portfolio.pdf" download>
+            <a href="/docs/pf-np-7b2d5a.pdf" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="sm" className="gap-2">
                 <Download className="w-4 h-4" /> Portfolio
+              </Button>
+            </a>
+            <a href="/docs/cv-np-a3d7b2.pdf" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="sm" className="gap-2">
+                <Download className="w-4 h-4" /> CV
               </Button>
             </a>
           </div>
@@ -91,14 +96,19 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
-              <a href="/nikhil-eng-resume.pdf" download className="mt-1">
+              <a href="/docs/rs-np-4e9f1c.pdf" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="mt-1">
                 <Button variant="outline" size="sm" className="gap-2 w-full">
                   <Download className="w-4 h-4" /> Resume
                 </Button>
               </a>
-              <a href="/nikhil-eng project portfolio.pdf" download>
+              <a href="/docs/pf-np-7b2d5a.pdf" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
                 <Button variant="outline" size="sm" className="gap-2 w-full">
                   <Download className="w-4 h-4" /> Portfolio
+                </Button>
+              </a>
+              <a href="/docs/cv-np-a3d7b2.pdf" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
+                <Button variant="outline" size="sm" className="gap-2 w-full">
+                  <Download className="w-4 h-4" /> CV
                 </Button>
               </a>
             </div>
