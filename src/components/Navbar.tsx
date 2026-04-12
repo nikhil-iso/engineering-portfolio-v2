@@ -43,21 +43,21 @@ const Navbar = () => {
             </Link>
           ))}
           <div className="flex items-center gap-2">
-            <Link to="/documents/resume">
+            <a href="/docs/rs-np-4e9f1c.pdf" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="sm" className="gap-2">
                 <Download className="w-4 h-4" /> Resume
               </Button>
-            </Link>
-            <Link to="/documents/portfolio">
+            </a>
+            <a href="/docs/pf-np-7b2d5a.pdf" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="sm" className="gap-2">
                 <Download className="w-4 h-4" /> Portfolio
               </Button>
-            </Link>
-            <Link to="/documents/cv">
+            </a>
+            <a href="/docs/cv-np-a3d7b2.pdf" target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="sm" className="gap-2">
                 <Download className="w-4 h-4" /> CV
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -96,21 +96,21 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
-              <Link to="/documents/resume" onClick={() => setMobileOpen(false)} className="mt-1">
+              <a href="/docs/rs-np-4e9f1c.pdf" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)} className="mt-1">
                 <Button variant="outline" size="sm" className="gap-2 w-full">
                   <Download className="w-4 h-4" /> Resume
                 </Button>
-              </Link>
-              <Link to="/documents/portfolio" onClick={() => setMobileOpen(false)}>
+              </a>
+              <a href="/docs/pf-np-7b2d5a.pdf" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
                 <Button variant="outline" size="sm" className="gap-2 w-full">
                   <Download className="w-4 h-4" /> Portfolio
                 </Button>
-              </Link>
-              <Link to="/documents/cv" onClick={() => setMobileOpen(false)}>
+              </a>
+              <a href="/docs/cv-np-a3d7b2.pdf" target="_blank" rel="noopener noreferrer" onClick={() => setMobileOpen(false)}>
                 <Button variant="outline" size="sm" className="gap-2 w-full">
                   <Download className="w-4 h-4" /> CV
                 </Button>
-              </Link>
+              </a>
             </div>
           </motion.div>
         )}
