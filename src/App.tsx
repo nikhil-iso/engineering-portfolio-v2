@@ -18,6 +18,7 @@ const PersonalProjects = lazy(() => import("./pages/PersonalProjects"));
 const TeamProjects = lazy(() => import("./pages/TeamProjects"));
 const PersonalProjectDetail = lazy(() => import("./pages/PersonalProjectDetail"));
 const TeamProjectDetail = lazy(() => import("./pages/TeamProjectDetail"));
+const DocumentViewer = lazy(() => import("./pages/DocumentViewer"));
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/personal-projects/:id" element={<PersonalProjectDetail />} />
             <Route path="/team-projects" element={<TeamProjects />} />
             <Route path="/team-projects/:id" element={<TeamProjectDetail />} />
+            <Route path="/documents/:docType" element={<DocumentViewer />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
