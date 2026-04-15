@@ -19,6 +19,7 @@ const TeamProjects = lazy(() => import("./pages/TeamProjects"));
 const PersonalProjectDetail = lazy(() => import("./pages/PersonalProjectDetail"));
 const TeamProjectDetail = lazy(() => import("./pages/TeamProjectDetail"));
 
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -37,6 +38,7 @@ const App = () => (
             <Route path="/personal-projects/:id" element={<PersonalProjectDetail />} />
             <Route path="/team-projects" element={<TeamProjects />} />
             <Route path="/team-projects/:id" element={<TeamProjectDetail />} />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
