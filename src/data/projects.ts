@@ -77,6 +77,29 @@ export interface TeamProject {
 // Add new projects by copying an object and changing the fields.
 // ═══════════════════════════════════════════════════════════════
 export const personalProjects: PersonalProject[] = [
+ {
+    id: "MRFC",
+    title: "MRFC - Modular Rocket Flight Computer",
+    description:
+      "A PlatformIO firmware prototype for Teensy 4.1 that validates IMU and barometric sensor performance, streams filtered CSV telemetry, and logs boot sessions to onboard SD.",
+    skills: ["PlatformIO", "Teensy 4.1", "Embedded Firmware", "Sensor Fusion", "I2C", "C++", "Python", "Web Serial", "SD Logging"],
+    span: 3,
+    cardImage: "/images/usst-flightcomputerV2.png",
+
+    problemGoal:
+      "Build a bench-ready sensor validation platform for a future rocket flight computer. The project focuses on precise IMU and barometer initialization, pressure baseline calibration, live telemetry, and browser-based visualization before adding launch-state and pyro control logic.",
+    roleAndProcess:
+      "Sole firmware developer. Implemented the MRFC prototype in PlatformIO using Arduino APIs on Teensy 4.1. The firmware initializes MPU6050 and BME280 sensors over I2C, calibrates a ground-pressure baseline during a 3 second stationary startup window, and signals successful initialization with a short active buzzer chirp on pin 5.\n\nThe code computes relative altitude from live pressure data, smooths altitude and total acceleration with simple filters, and emits a CSV telemetry stream over USB serial at 115200 baud. On each boot it also opens the next available onboard SD log file (/LOG000.CSV, /LOG001.CSV, etc.) and writes the same telemetry stream to disk. USB serial commands allow browsing SD card files and pausing live telemetry for command entry.",
+    toolsUsed: ["Teensy 4.1", "PlatformIO", "Arduino", "C++", "MPU6050", "BME280", "I2C", "SD Card", "Web Serial", "JavaScript", "Python"],
+    outcome:
+      "Delivered a working sensor-validation firmware prototype with reliable I2C initialization, pressure baseline calibration, onboard SD boot logging, and CSV telemetry output. The project is currently a bench-phase flight computer prototype: the sensor pipeline is validated, but launch-state detection, event handling, pyro control, and radio/ground-station links remain future work.",
+    materials: [
+      {
+        label: "View GitHub Repository",
+        url: "https://github.com/nikhil-iso/MRFC",
+      },
+    ],
+  },
   {
     id: "simulight-sunrise",
     title: "SimuLight Sunrise",
